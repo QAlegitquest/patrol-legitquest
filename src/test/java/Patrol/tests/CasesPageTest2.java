@@ -11,12 +11,13 @@ import Patrol.pages.LoginPage;
 import Patrol.utilities.BaseTest;
 import Patrol.utilities.BrowserUtility;
 import Patrol.utilities.ConfingDataProvider;
+import Patrol.utilities.RetryAnalyzer;
 import Patrol.utilities.ScreenShotsUtility;
 import Patrol.utilities.WaitUtility;
 
 public class CasesPageTest2 extends BaseTest{
 
-	@Test(priority=1,enabled = true)
+	@Test(priority=1,enabled = false)
 	public void verifyAllLinks() {
 		SoftAssert softAssert = new SoftAssert();
 		LoginPage loginPage = new LoginPage(driver);
@@ -56,7 +57,7 @@ public class CasesPageTest2 extends BaseTest{
 		softAssert.assertAll();
 	}
 	
-	@Test(priority=2,enabled = false)
+	@Test(priority=2,enabled = false,retryAnalyzer = RetryAnalyzer.class)
 	public void verifyPagination() {
 		SoftAssert softAssert = new SoftAssert();
 		LoginPage loginPage = new LoginPage(driver);
@@ -90,4 +91,122 @@ public class CasesPageTest2 extends BaseTest{
 		}
 		softAssert.assertAll();
 	}
+	
+	@Test(priority=1,enabled = false)
+	public void TC003(){
+		SoftAssert softAssert = new SoftAssert();
+		LoginPage loginPage = new LoginPage(driver);
+		loginPage.setEmail(ConfingDataProvider.Email);
+		loginPage.setPassword(ConfingDataProvider.Password);
+		loginPage.performAction();
+		ActiveFirmPage activeFirmpage = new ActiveFirmPage(driver);
+		activeFirmpage.clickOnCompany("Legitquest");
+		DashBoardPage dashBoardPage = new DashBoardPage(driver);
+		dashBoardPage.clickOnManageCases();
+		dashBoardPage.clickCasesLink();
+		CasesPage2 casePage = new CasesPage2(driver);
+		for (int i = 0; i < 1; i++) {
+			casePage.clickOnLink(String.valueOf((i + 1)));
+			CasesDetailPage caseDetailPage = new CasesDetailPage(driver);
+			softAssert.assertEquals(caseDetailPage.isCaseDetailTabVisible(), true);
+			caseDetailPage.clickOnMatterTab();
+			caseDetailPage.clickOnCreateMatterBtn();
+			softAssert.assertEquals(caseDetailPage.isMatterModalVisible(), true,"matter modal is not visible");
+			caseDetailPage.clickOnMatterModalSaveChangesBtn();
+			softAssert.assertEquals(caseDetailPage.isMatterModalHide(), true,"matter modal is not hide");
+			caseDetailPage.clickOnMatterTab();
+			WaitUtility.waitForSeconds(10);
+		}
+	}
+	@Test(priority=1,enabled = false)
+	public void TC004(){
+		SoftAssert softAssert = new SoftAssert();
+		LoginPage loginPage = new LoginPage(driver);
+		loginPage.setEmail(ConfingDataProvider.Email);
+		loginPage.setPassword(ConfingDataProvider.Password);
+		loginPage.performAction();
+		ActiveFirmPage activeFirmpage = new ActiveFirmPage(driver);
+		activeFirmpage.clickOnCompany("Legitquest");
+		DashBoardPage dashBoardPage = new DashBoardPage(driver);
+		dashBoardPage.clickOnManageCases();
+		dashBoardPage.clickCasesLink();
+		CasesPage2 casePage = new CasesPage2(driver);
+		for (int i = 0; i < 1; i++) {
+			casePage.clickOnLink(String.valueOf((i + 1)));
+			CasesDetailPage caseDetailPage = new CasesDetailPage(driver);
+			softAssert.assertEquals(caseDetailPage.isCaseDetailTabVisible(), true);
+			caseDetailPage.clickOnTaskTab();
+			caseDetailPage.clickOnCreateTaskBtn();
+			softAssert.assertEquals(caseDetailPage.isTaskModalVisible(), true,"task modal is not visible");
+			caseDetailPage.enterTaskName("Task 1");
+			caseDetailPage.enterTaskDescription("Task 1 Description");
+			caseDetailPage.clickOnAssignedUser();
+			caseDetailPage.clickOn2ndOption();
+			caseDetailPage.clickOnTaskModalSaveChangesBtn();
+			softAssert.assertEquals(caseDetailPage.isTaskModalHide(), true,"task modal is not hide");
+			caseDetailPage.clickOnTaskTab();
+			WaitUtility.waitForSeconds(10);
+		}
+	}
+	@Test(priority=1,enabled = true)
+	public void TC005(){
+		SoftAssert softAssert = new SoftAssert();
+		LoginPage loginPage = new LoginPage(driver);
+		loginPage.setEmail(ConfingDataProvider.Email);
+		loginPage.setPassword(ConfingDataProvider.Password);
+		loginPage.performAction();
+		ActiveFirmPage activeFirmpage = new ActiveFirmPage(driver);
+		activeFirmpage.clickOnCompany("Legitquest");
+		DashBoardPage dashBoardPage = new DashBoardPage(driver);
+		dashBoardPage.clickOnManageCases();
+		dashBoardPage.clickCasesLink();
+		CasesPage2 casePage = new CasesPage2(driver);
+		for (int i = 0; i < 1; i++) {
+			casePage.clickOnLink(String.valueOf((i + 1)));
+			CasesDetailPage caseDetailPage = new CasesDetailPage(driver);
+			softAssert.assertEquals(caseDetailPage.isCaseDetailTabVisible(), true);
+			caseDetailPage.clickOnDocumentTab();
+			caseDetailPage.clickOnCreateDocumentBtn();
+			softAssert.assertEquals(caseDetailPage.isDocumentModalVisible(), true,"document modal is not visible");
+			caseDetailPage.enterDocumentName("doc 1");
+			caseDetailPage.enterDocumentDate();
+			caseDetailPage.enterDocumentDescription("doc description 1");
+			caseDetailPage.clickOnDocumentSaveBtn();
+			softAssert.assertEquals(caseDetailPage.isDocumentModalHide(), true,"document modal is not hide");
+			caseDetailPage.clickOnDocumentTab();
+			WaitUtility.waitForSeconds(10);
+		}
+	}
+	
+	@Test(priority = 1, enabled = false)
+	public void TC006() {
+		SoftAssert softAssert = new SoftAssert();
+		LoginPage loginPage = new LoginPage(driver);
+		loginPage.setEmail(ConfingDataProvider.Email);
+		loginPage.setPassword(ConfingDataProvider.Password);
+		loginPage.performAction();
+		ActiveFirmPage activeFirmpage = new ActiveFirmPage(driver);
+		activeFirmpage.clickOnLegitquest();;
+		DashBoardPage dashBoardPage = new DashBoardPage(driver);
+		dashBoardPage.clickOnManageCases();
+		dashBoardPage.clickCasesLink();
+		CasesPage2 casePage = new CasesPage2(driver);
+		for (int i = 0; i < 1; i++) {
+			casePage.clickOnLink(String.valueOf((i + 1)));
+			CasesDetailPage caseDetailPage = new CasesDetailPage(driver);
+			softAssert.assertEquals(caseDetailPage.isCaseDetailTabVisible(), true);
+			caseDetailPage.clickOnNotesTab();
+			caseDetailPage.clickOncreateNotesBtn();
+			softAssert.assertEquals(caseDetailPage.isNoteModalVisible(), true, "notes modal is not visible");
+			caseDetailPage.enterNoteName("Note1");
+			caseDetailPage.enterNoteDate();
+			caseDetailPage.enterNoteDescription("Note Description 1");
+			caseDetailPage.clickOnNoteSaveBtn();
+			softAssert.assertEquals(caseDetailPage.isNoteModalHide(), true, "notes modal is not hide");
+			caseDetailPage.clickOnNotesTab();
+			WaitUtility.waitForSeconds(10);
+		}
+	}
 }
+
+

@@ -43,6 +43,7 @@ public class ReportPageTest extends BaseTest2 {
 		Assert.assertTrue(CommonUtility.isPageHeaderVisible(driver),"Header is not visible");
 		Assert.assertEquals(CommonUtility.verifyPageHeader(driver), "Case: Hearing Status Report","Header Miss Match");
 		
+		
 	}
 	
 	@Test(priority = 3,retryAnalyzer = RetryAnalyzer.class)
@@ -52,7 +53,7 @@ public class ReportPageTest extends BaseTest2 {
 		WaitUtility.waitForSeconds(5);
 		Assert.assertTrue(CommonUtility.isPageHeaderVisible(driver),"Header is not visible");
 		Assert.assertEquals(CommonUtility.verifyPageHeader(driver), "Case: Order Report","Header Miss Match");
-		reportpage.goToPreviousPage();
+		
 	}
 	
 	@Test(priority = 4,retryAnalyzer = RetryAnalyzer.class)

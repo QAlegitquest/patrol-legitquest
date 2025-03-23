@@ -14,10 +14,14 @@ import Patrol.utilities.CommonUtility;
 import Patrol.utilities.ConfingDataProvider;
 import Patrol.utilities.RetryAnalyzer;
 import Patrol.utilities.WaitUtility;
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 
 public class SidebarLinksTest extends BaseTest2 {
 
 	@BeforeClass()
+	
 	public void dologin() {
 		LoginPage loginPage = new LoginPage(driver);
 		loginPage.setEmail(ConfingDataProvider.Email);
@@ -28,6 +32,8 @@ public class SidebarLinksTest extends BaseTest2 {
 	}
 	
 	@Test(priority = 0,retryAnalyzer = RetryAnalyzer.class)
+	@Severity(SeverityLevel.CRITICAL)
+    @Description("Test Description: Patrol Smoke Test Of All Module")
 	public void dashboardlinkTest() throws IOException {
 		CommonUtility.clickOnLink(driver, "Dashboard");
 		DashBoardPage dashboard = new DashBoardPage(driver);
@@ -35,6 +41,8 @@ public class SidebarLinksTest extends BaseTest2 {
 	}
 
 	@Test(priority = 1,retryAnalyzer = RetryAnalyzer.class)
+	@Severity(SeverityLevel.CRITICAL)
+    @Description("Test Description: Patrol Smoke Test Of All Module")
 	public void reportlinkTest() throws IOException {
 		CommonUtility.clickOnLink(driver, "Reports");
 		WaitUtility.waitForSeconds(5);
@@ -43,6 +51,8 @@ public class SidebarLinksTest extends BaseTest2 {
 	}
 
 	@Test(priority = 2,retryAnalyzer = RetryAnalyzer.class)
+	@Severity(SeverityLevel.CRITICAL)
+    @Description("Test Description: Patrol Smoke Test Of All Module")
 	public void caeuselistlinkTest() throws IOException {
 		CommonUtility.clickOnLink(driver, "My Cause List");
 		WaitUtility.waitForSeconds(5);
@@ -51,6 +61,8 @@ public class SidebarLinksTest extends BaseTest2 {
 	}
 
 	@Test(priority = 3,retryAnalyzer = RetryAnalyzer.class)
+	@Severity(SeverityLevel.CRITICAL)
+    @Description("Test Description: Patrol Smoke Test Of All Module")
 	public void invoicelinkTest() throws IOException {
 		CommonUtility.clickOnLink(driver, "Invoice");
 		WaitUtility.waitForSeconds(5);
@@ -59,6 +71,8 @@ public class SidebarLinksTest extends BaseTest2 {
 	}
 
 	@Test(priority = 4,retryAnalyzer = RetryAnalyzer.class)
+	@Severity(SeverityLevel.CRITICAL)
+    @Description("Test Description: Patrol Smoke Test Of All Module")
 	public void ordertrackerlinkTest() throws IOException {
 		CommonUtility.clickOnLink(driver, "Order Tracker");
 		WaitUtility.waitForSeconds(5);
@@ -67,6 +81,8 @@ public class SidebarLinksTest extends BaseTest2 {
 	}
 
 	@Test(priority = 5,retryAnalyzer = RetryAnalyzer.class)
+	@Severity(SeverityLevel.CRITICAL)
+    @Description("Test Description: Patrol Smoke Test Of All Module")
 	public void notificationlinkTest() throws IOException {
 		CommonUtility.clickOnLink(driver, "Notification");
 		WaitUtility.waitForSeconds(5);
@@ -75,6 +91,8 @@ public class SidebarLinksTest extends BaseTest2 {
 	}
 
 	@Test(priority = 6,retryAnalyzer = RetryAnalyzer.class)
+	@Severity(SeverityLevel.CRITICAL)
+    @Description("Test Description: Patrol Smoke Test Of All Module")
 	public void companylinkTest() throws IOException {
 		CommonUtility.clickOnLink(driver, "Company");
 		WaitUtility.waitForSeconds(5);
@@ -83,6 +101,8 @@ public class SidebarLinksTest extends BaseTest2 {
 	}
 	
 	@Test(priority = 7,retryAnalyzer = RetryAnalyzer.class)
+	@Severity(SeverityLevel.CRITICAL)
+    @Description("Test Description: Patrol Smoke Test Of All Module")
 	public void manageCase_cases_linkTest() throws IOException {
 		CommonUtility.clickOnLink(driver, "Manage Cases");
 		CommonUtility.clickOnLink(driver, "Cases");
@@ -92,6 +112,8 @@ public class SidebarLinksTest extends BaseTest2 {
 	}
 	
 	@Test(priority = 8,retryAnalyzer = RetryAnalyzer.class)
+	@Severity(SeverityLevel.CRITICAL)
+    @Description("Test Description: Patrol Smoke Test Of All Module")
 	public void manageCase_matters_linkTest() throws IOException {
 		CommonUtility.clickOnLink(driver, "Manage Cases");
 		CommonUtility.clickOnLink(driver, "Matters");
@@ -101,6 +123,8 @@ public class SidebarLinksTest extends BaseTest2 {
 	}
 	
 	@Test(priority = 9,retryAnalyzer = RetryAnalyzer.class)
+	@Severity(SeverityLevel.CRITICAL)
+    @Description("Test Description: Patrol Smoke Test Of All Module")
 	public void manageCase_calendar_linkTest() throws IOException {
 		CommonUtility.clickOnLink(driver, "Manage Cases");
 		CommonUtility.clickOnLink(driver, "Calendar");
@@ -110,6 +134,8 @@ public class SidebarLinksTest extends BaseTest2 {
 	}
 	
 	@Test(priority = 10,retryAnalyzer = RetryAnalyzer.class)
+	@Severity(SeverityLevel.CRITICAL)
+    @Description("Test Description: Patrol Smoke Test Of All Module")
 	public void manageCase_tasks_linkTest() throws IOException {
 		CommonUtility.clickOnLink(driver, "Manage Cases");
 		CommonUtility.clickOnLink(driver, "Tasks");
@@ -119,6 +145,8 @@ public class SidebarLinksTest extends BaseTest2 {
 	}
 	
 	@Test(priority = 11,retryAnalyzer = RetryAnalyzer.class)
+	@Severity(SeverityLevel.CRITICAL)
+    @Description("Test Description: Patrol Smoke Test Of All Module")
 	public void manageCase_documents_linkTest() throws IOException {
 		CommonUtility.clickOnLink(driver, "Manage Cases");
 		CommonUtility.clickOnLink(driver, "Documents");
@@ -128,6 +156,8 @@ public class SidebarLinksTest extends BaseTest2 {
 	}
 	
 	@Test(priority = 12,retryAnalyzer = RetryAnalyzer.class)
+	@Severity(SeverityLevel.CRITICAL)
+    @Description("Test Description: Patrol Smoke Test Of All Module")
 	public void manageCase_contacts_linkTest() throws IOException {
 		CommonUtility.clickOnLink(driver, "Manage Cases");
 		CommonUtility.clickOnLink(driver, "Contacts");
@@ -137,6 +167,8 @@ public class SidebarLinksTest extends BaseTest2 {
 	}
 	
 	@Test(priority = 13,retryAnalyzer = RetryAnalyzer.class)
+	@Severity(SeverityLevel.CRITICAL)
+    @Description("Test Description: Patrol Smoke Test Of All Module")
 	public void manageCase_alert_linkTest() throws IOException {
 		CommonUtility.clickOnLink(driver, "Manage Cases");
 		CommonUtility.clickOnLink(driver, "Alerts");
