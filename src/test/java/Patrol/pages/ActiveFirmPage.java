@@ -28,8 +28,16 @@ public class ActiveFirmPage extends BasePage {
 	
 	@FindBy(xpath="//a[text()='Legitquest']")
 	private WebElement legitquest;
+	
+	@FindBy(xpath="//a[normalize-space()='LegitquestTest']") 
+	WebElement legitquestTest;
+	
 	public void clickOnLegitquest(){
         legitquest.click();
+	}
+	
+	public void clickOnLegitquestTest(){
+        legitquestTest.click();
 	}
 	
 	public void clickOnCompany(String companyName) {

@@ -19,6 +19,9 @@ public class DashBoardPage extends BasePage {
 	
 	@FindBy(xpath = "//span[text()='Cases']")
 	private WebElement casesLink;
+	
+	@FindBy(xpath = "//span[text()='Notification']")
+	private WebElement notificationLink;
 
 	@FindBy(xpath = "//span[text()='Alerts']")
 	private WebElement alertsLink;
@@ -58,5 +61,10 @@ public class DashBoardPage extends BasePage {
 	public void clickCasesLink() {
 		WaitUtility.waitForElementToBeClickable(driver, casesLink);
 		casesLink.click();
+	}
+	
+	public void clickNotificationCasesLink() {
+		WaitUtility.waitForElementToBeClickable(driver, casesLink);
+		notificationLink.click();
 	}
 }
