@@ -16,7 +16,7 @@ import Patrol.utilities.RetryAnalyzer;
 import Patrol.utilities.ScreenShotsUtility;
 import Patrol.utilities.WaitUtility;
 
-public class SmokeTestSideBar2 extends BaseTest {
+public class SidebarLinksTest2 extends BaseTest {
 
 	@BeforeMethod
 	public void dologin() {

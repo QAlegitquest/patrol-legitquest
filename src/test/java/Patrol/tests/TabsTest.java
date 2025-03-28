@@ -12,126 +12,9 @@ import Patrol.utilities.BaseTest;
 import Patrol.utilities.BrowserUtility;
 import Patrol.utilities.CommonUtility;
 import Patrol.utilities.ConfingDataProvider;
-import Patrol.utilities.ScreenShotsUtility;
 import Patrol.utilities.WaitUtility;
 
-public class CasesPageTest2 extends BaseTest {
-
-	@Test(priority = 1, enabled = true)
-	public void verifyAllLinks() {
-		SoftAssert softAssert = new SoftAssert();
-		LoginPage loginPage = new LoginPage(driver);
-		loginPage.setEmail(ConfingDataProvider.Email);
-		loginPage.setPassword(ConfingDataProvider.Password);
-		loginPage.performAction();
-		ActiveFirmPage activeFirmpage = new ActiveFirmPage(driver);
-		activeFirmpage.clickOnLegitquest();
-		DashBoardPage dashBoardPage = new DashBoardPage(driver);
-		dashBoardPage.clickOnManageCases();
-		dashBoardPage.clickCasesLink();
-		CasesPage2 casePage = new CasesPage2(driver);
-		int page = 1;
-		while (true) {
-			System.out.println("Current Page Before Loop: " + page);
-			for (int i = 0; i < casePage.getTableRowsCount(); i++) {
-				casePage.clickOnLink(String.valueOf((i + 1)));
-				CasesDetailPage caseDetailPage = new CasesDetailPage(driver);
-				String msg = "Page => pNO, Row => rNo, CaseLink => cLink";
-				if (!caseDetailPage.isCaseDetailTabVisible()) {
-					msg = msg.replace("pNO", String.valueOf(page));
-					msg = msg.replace("rNo", String.valueOf((i + 1)));
-					msg = msg.replace("cLink", driver.getCurrentUrl());
-				}
-				softAssert.assertEquals(caseDetailPage.isCaseDetailTabVisible(), true, msg);
-				casePage.goToPreviousPage();
-			}
-			BrowserUtility.scrollToDown(driver);
-			WaitUtility.waitForSeconds(0.5);
-			if (!casePage.isNextButtonDisabled()) {
-				casePage.clickOnNextButton();
-			} else {
-				break;
-			}
-			page++;
-		}
-		softAssert.assertAll();
-	}
-	
-	@Test(priority = 2, enabled = true)
-	public void verifyAllLinks2() {
-		SoftAssert softAssert = new SoftAssert();
-		LoginPage loginPage = new LoginPage(driver);
-		loginPage.setEmail(ConfingDataProvider.Email);
-		loginPage.setPassword(ConfingDataProvider.Password);
-		loginPage.performAction();
-		ActiveFirmPage activeFirmpage = new ActiveFirmPage(driver);
-		activeFirmpage.clickOnLQTest();
-		DashBoardPage dashBoardPage = new DashBoardPage(driver);
-		dashBoardPage.clickOnManageCases();
-		dashBoardPage.clickCasesLink();
-		CasesPage2 casePage = new CasesPage2(driver);
-		int page = 1;
-		while (true) {
-			System.out.println("Current Page Before Loop: " + page);
-			for (int i = 0; i < casePage.getTableRowsCount(); i++) {
-				casePage.clickOnLink(String.valueOf((i + 1)));
-				CasesDetailPage caseDetailPage = new CasesDetailPage(driver);
-				String msg = "Page => pNO, Row => rNo, CaseLink => cLink";
-				if (!caseDetailPage.isCaseDetailTabVisible()) {
-					msg = msg.replace("pNO", String.valueOf(page));
-					msg = msg.replace("rNo", String.valueOf((i + 1)));
-					msg = msg.replace("cLink", driver.getCurrentUrl());
-				}
-				softAssert.assertEquals(caseDetailPage.isCaseDetailTabVisible(), true, msg);
-				casePage.goToPreviousPage();
-			}
-			BrowserUtility.scrollToDown(driver);
-			WaitUtility.waitForSeconds(0.5);
-			if (!casePage.isNextButtonDisabled()) {
-				casePage.clickOnNextButton();
-			} else {
-				break;
-			}
-			page++;
-		}
-		softAssert.assertAll();
-	}
-
-	@Test(priority = 3, enabled = true)
-	public void verifyPagination() {
-		SoftAssert softAssert = new SoftAssert();
-		LoginPage loginPage = new LoginPage(driver);
-		loginPage.setEmail(ConfingDataProvider.Email);
-		loginPage.setPassword(ConfingDataProvider.Password);
-		loginPage.performAction();
-		ActiveFirmPage activeFirmpage = new ActiveFirmPage(driver);
-		activeFirmpage.clickOnLegitquest();
-		//activeFirmpage.clickOnLQTest();
-		DashBoardPage dashBoardPage = new DashBoardPage(driver);
-		dashBoardPage.clickOnManageCases();
-		dashBoardPage.clickCasesLink();
-		CasesPage2 casePage = new CasesPage2(driver);
-		int lastPageNumber = casePage.getSecondLastPageNumber();
-		for (int page = 2; page <= lastPageNumber; page++) {
-			if (casePage.isLogoDisplayed()) {
-				BrowserUtility.scrollToDown(driver);
-				WaitUtility.waitForSeconds(2);
-				casePage.clickOnPage(String.valueOf(page));
-				WaitUtility.waitForSeconds(5);
-			} else {
-				String screenshotName = "Skip Page = " + page;
-				softAssert.assertEquals(casePage.isLogoDisplayed(), true, screenshotName);
-				ScreenShotsUtility.addScreenshotToReport(driver, screenshotName);
-				casePage.goToPreviousPage();
-				page++;
-				BrowserUtility.scrollToDown(driver);
-				WaitUtility.waitForSeconds(2);
-				casePage.clickOnPage(String.valueOf(page));
-				WaitUtility.waitForSeconds(5);
-			}
-		}
-		softAssert.assertAll();
-	}
+public class TabsTest extends BaseTest {
 
 	// matter tab test
 	@Test(priority = 3, enabled = false)
@@ -363,59 +246,59 @@ public class CasesPageTest2 extends BaseTest {
 		}
 		softAssert.assertAll();
 	}
-	
+
 	// contact test
-		@Test(priority = 8, enabled = false )
-		public void contactTabIndividual() {
-			SoftAssert softAssert = new SoftAssert();
-			LoginPage loginPage = new LoginPage(driver);
-			loginPage.setEmail(ConfingDataProvider.Email);
-			loginPage.setPassword(ConfingDataProvider.Password);
-			loginPage.performAction();
-			ActiveFirmPage activeFirmpage = new ActiveFirmPage(driver);
-			activeFirmpage.clickOnLegitquestTest();
-			DashBoardPage dashBoardPage = new DashBoardPage(driver);
-			dashBoardPage.clickOnManageCases();
-			dashBoardPage.clickCasesLink();
-			CasesPage2 casePage = new CasesPage2(driver);
-			int page = 1;
-			while (true) {
-				System.out.println("Current Page Before Loop: " + page);
-				for (int i = 0; i < casePage.getTableRowsCount(); i++) {
-					casePage.clickOnLink(String.valueOf((i + 1)));
-					CasesDetailPage caseDetailPage = new CasesDetailPage(driver);
-					softAssert.assertEquals(caseDetailPage.isCaseDetailTabVisible(), true);
-					caseDetailPage.clickOnContactTab();
-					caseDetailPage.clickOnContactOptions();
-					caseDetailPage.clickOnCreateContact();
-					softAssert.assertEquals(caseDetailPage.isCreateContactModalVisible(), true,
-							"create contact modal is not visible");
-					// caseDetailPage
-					caseDetailPage.selectCategory("Individual");
-					WaitUtility.waitForSeconds(1);
-					caseDetailPage.enterIndividualName("Abc");
-					caseDetailPage.enterEmail("example@abc.com");
-					caseDetailPage.enterPhoneNo("9897345687");
-					caseDetailPage.enterOtherInfo("other info djfhjfhd");
-					caseDetailPage.enterAddres("random address");
-					caseDetailPage.clickOnCreateContactSaveBtn();
-					// --------------
-					softAssert.assertEquals(caseDetailPage.isCreateContactModalHide(), true,
-							"create contact modal is not hide");
-					caseDetailPage.clickOnContactTab();
-					casePage.goToPreviousPage();
-				}
-				BrowserUtility.scrollToDown(driver);
-				WaitUtility.waitForSeconds(0.5);
-				if (!casePage.isNextButtonDisabled()) {
-					casePage.clickOnNextButton();
-				} else {
-					break;
-				}
-				page++;
+	@Test(priority = 8, enabled = false)
+	public void contactTabIndividual() {
+		SoftAssert softAssert = new SoftAssert();
+		LoginPage loginPage = new LoginPage(driver);
+		loginPage.setEmail(ConfingDataProvider.Email);
+		loginPage.setPassword(ConfingDataProvider.Password);
+		loginPage.performAction();
+		ActiveFirmPage activeFirmpage = new ActiveFirmPage(driver);
+		activeFirmpage.clickOnLegitquestTest();
+		DashBoardPage dashBoardPage = new DashBoardPage(driver);
+		dashBoardPage.clickOnManageCases();
+		dashBoardPage.clickCasesLink();
+		CasesPage2 casePage = new CasesPage2(driver);
+		int page = 1;
+		while (true) {
+			System.out.println("Current Page Before Loop: " + page);
+			for (int i = 0; i < casePage.getTableRowsCount(); i++) {
+				casePage.clickOnLink(String.valueOf((i + 1)));
+				CasesDetailPage caseDetailPage = new CasesDetailPage(driver);
+				softAssert.assertEquals(caseDetailPage.isCaseDetailTabVisible(), true);
+				caseDetailPage.clickOnContactTab();
+				caseDetailPage.clickOnContactOptions();
+				caseDetailPage.clickOnCreateContact();
+				softAssert.assertEquals(caseDetailPage.isCreateContactModalVisible(), true,
+						"create contact modal is not visible");
+				// caseDetailPage
+				caseDetailPage.selectCategory("Individual");
+				WaitUtility.waitForSeconds(1);
+				caseDetailPage.enterIndividualName("Abc");
+				caseDetailPage.enterEmail("example@abc.com");
+				caseDetailPage.enterPhoneNo("9897345687");
+				caseDetailPage.enterOtherInfo("other info djfhjfhd");
+				caseDetailPage.enterAddres("random address");
+				caseDetailPage.clickOnCreateContactSaveBtn();
+				// --------------
+				softAssert.assertEquals(caseDetailPage.isCreateContactModalHide(), true,
+						"create contact modal is not hide");
+				caseDetailPage.clickOnContactTab();
+				casePage.goToPreviousPage();
 			}
-			softAssert.assertAll();
+			BrowserUtility.scrollToDown(driver);
+			WaitUtility.waitForSeconds(0.5);
+			if (!casePage.isNextButtonDisabled()) {
+				casePage.clickOnNextButton();
+			} else {
+				break;
+			}
+			page++;
 		}
+		softAssert.assertAll();
+	}
 
 	// existing contact test
 	@Test(priority = 9, enabled = false)
@@ -555,7 +438,7 @@ public class CasesPageTest2 extends BaseTest {
 	}
 
 	// related matters test
-	@Test(priority = 12, enabled = false)
+	@Test(priority = 12, enabled = true)
 	public void relatedMatterTabSupremeCourt() {
 		SoftAssert softAssert = new SoftAssert();
 		LoginPage loginPage = new LoginPage(driver);

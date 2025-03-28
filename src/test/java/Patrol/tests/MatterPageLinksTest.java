@@ -15,7 +15,7 @@ import Patrol.utilities.ConfingDataProvider;
 import Patrol.utilities.RetryAnalyzer;
 import Patrol.utilities.WaitUtility;
 
-public class MatterPageTest extends BaseTest2 {
+public class MatterPageLinksTest extends BaseTest2 {
 
 	@BeforeClass()
 	public void dologin() {
