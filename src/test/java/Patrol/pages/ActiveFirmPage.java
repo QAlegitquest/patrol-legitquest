@@ -56,7 +56,7 @@ public class ActiveFirmPage extends BasePage {
 	        if (company.getText().trim().equalsIgnoreCase(companyName)) {
 	        	WaitUtility.waitForElementToBeVisible(driver, company);
 	        	WaitUtility.waitForElementToBeClickable(driver, company);
-	            company.click();
+	        	BrowserUtility.click(driver, company);
 	            found = true;
 	            break;
 	        }

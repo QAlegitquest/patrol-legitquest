@@ -14,26 +14,32 @@ import org.openqa.selenium.support.ui.Select;
 public class BrowserUtility {
 	
 	// click
-	public static void click(WebDriver driver, WebElement element) {
-		try {
-			BrowserUtility.scrollIntoView(driver, element);
-			WaitUtility.waitForElementToBeVisible(driver, element);
-			element.click();
-		} catch (Exception e) {
-			System.err.println("Click Failed: " + e.getMessage());
+		public static void click(WebDriver driver, WebElement element) {
+			try {
+				BrowserUtility.scrollIntoView(driver, element);
+				WaitUtility.waitForElementToBeVisible(driver, element);
+				WaitUtility.waitForElementToBeClickable(driver, element);
+				try {
+					element.click();
+				} catch (Exception e) {
+					JavascriptExecutor js = (JavascriptExecutor) driver;
+					js.executeScript("arguments[0].click();", element);
+				}
+			} catch (Exception e) {
+				System.err.println("Click Failed: " + e.getMessage());
+			}
 		}
-	}
-	
-	public static void click(WebDriver driver, WebElement element, String LogMessege) {
-		try {
-			BrowserUtility.scrollIntoView(driver, element);
-			WaitUtility.waitForElementToBeVisible(driver, element);
-			element.click();
-			System.out.println(LogMessege);
-		} catch (Exception e) {
-			System.err.println("Click Failed: " + e.getMessage());
+		
+		public static void click(WebDriver driver, WebElement element, String LogMessege) {
+			try {
+				BrowserUtility.scrollIntoView(driver, element);
+				WaitUtility.waitForElementToBeVisible(driver, element);
+				element.click();
+				System.out.println(LogMessege);
+			} catch (Exception e) {
+				System.err.println("Click Failed: " + e.getMessage());
+			}
 		}
-	}
 	
 	// Sendkeys
 	public static void sendKeys(WebDriver driver, WebElement element, String enterValue) {

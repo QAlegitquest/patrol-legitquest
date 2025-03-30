@@ -3,6 +3,7 @@ package Patrol.pages;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -30,9 +31,6 @@ public class SuggestionAlertsPage2 extends BasePage {
 
 	@FindBy(xpath = "//a[normalize-space()='Suggestion Alert']")
 	WebElement suggestionAlert;
-	
-	@FindBy(xpath = "//a[normalize-space()='Tata']")
-	WebElement tataTag;
 
 	@FindBy(xpath = "//div[normalize-space(text())='High Court']")
 	WebElement highcourtTab;
@@ -58,10 +56,6 @@ public class SuggestionAlertsPage2 extends BasePage {
 
 	public void clickOnSuggestionAlert() {
 		suggestionAlert.click();
-	}
-	
-	public void clickOnTataTag() {
-		tataTag.click();
 	}
 
 	public void clickAlertsLink() {
@@ -91,39 +85,55 @@ public class SuggestionAlertsPage2 extends BasePage {
 	public int getTableRowsCount() {
 		return table_rows.size();
 	}
-
+	
 	public boolean isTagFound(String tagName) {
-		List<WebElement> rows = table.findElements(By.xpath("//tbody//tr"));
-		boolean found = false;
-		for (int i = 0; i < rows.size(); i++) {
-			WebElement tagCell = rows.get(i).findElement(By.xpath(".//td[1]//a"));
-			BrowserUtility.scrollIntoView(driver, tagCell);
-			if (tagCell.getText().trim().equalsIgnoreCase(tagName)) {
-				found = true;
-				break;
-			}
-		}
-		return found;
-	}
+	    List<WebElement> rows = table.findElements(By.xpath(".//tbody//tr"));
 
+	    for (WebElement row : rows) {
+	        String xpath = ".//td[1]//*[normalize-space(text())='" + tagName + "']";
+	        WebElement tagCell;
+
+	        try {
+	            tagCell = row.findElement(By.xpath(xpath));
+	        } catch (NoSuchElementException e) {
+	            continue;
+	        }
+
+	        BrowserUtility.scrollIntoView(driver, tagCell, true);
+	        if (tagCell.getText().trim().equalsIgnoreCase(tagName)) {
+	            return true;
+	        }
+	    }
+	    return false;
+	}
+	
 	public void clickOnTag(String tagName) {
-		WaitUtility.waitForElementToBeVisible(driver,table);
-		List<WebElement> rows = table.findElements(By.xpath("//tbody//tr"));
-		for (int i = 0; i < rows.size(); i++) {
-			WebElement tagCell = rows.get(i).findElement(By.xpath(".//td[1]//a"));
-			BrowserUtility.scrollIntoView(driver, tagCell,true);
-			if (tagCell.getText().trim().equalsIgnoreCase(tagName)) {
-				tagCell.click();
-				break;
-			}
-		}
+	    WaitUtility.waitForElementToBeVisible(driver, table);
+	    List<WebElement> rows = table.findElements(By.xpath(".//tbody//tr"));
+
+	    for (WebElement row : rows) {
+	        String xpath = ".//td[1]//*[normalize-space(text())='" + tagName + "']";
+	        WebElement tagCell;
+
+	        try {
+	            tagCell = row.findElement(By.xpath(xpath));
+	        } catch (NoSuchElementException e) {
+	            continue;
+	        }
+
+	        BrowserUtility.scrollIntoView(driver, tagCell, true);
+	        if (tagCell.getText().trim().equalsIgnoreCase(tagName)) {
+	            BrowserUtility.click(driver, tagCell);
+	            break;
+	        }
+	    }
 	}
 
 	public boolean isCaseNumberFound(String caseNumberToFind) {
 		WaitUtility.waitForElementToBeVisible(driver,table);
 		List<WebElement> rows = table.findElements(By.tagName("tr"));
 		boolean found = false;
-		for (int i = 1; i < rows.size(); i++) { // Skip the header row
+		for (int i = 1; i < rows.size(); i++) {
 			List<WebElement> cells = rows.get(i).findElements(By.tagName("td"));
 			if (cells.size() > 1 && cells.get(1).getText().equals(caseNumberToFind)) {
 				found = true;

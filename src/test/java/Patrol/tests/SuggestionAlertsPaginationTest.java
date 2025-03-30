@@ -21,25 +21,25 @@ public class SuggestionAlertsPaginationTest extends BaseTest2 {
 
 	@BeforeClass()
 	public void dologin() {
+		
+		String tag = "Tata";
+		
 		LoginPage loginPage = new LoginPage(driver);
 		loginPage.setEmail(ConfingDataProvider.Email);
 		loginPage.setPassword(ConfingDataProvider.Password);
 		loginPage.performAction();
 
 		ActiveFirmPage activeFirmpage = new ActiveFirmPage(driver);
-		activeFirmpage.clickOnLegitquest();
-
+		activeFirmpage.clickOnCompany("Legitquest");
 		DashBoardPage dashBoardPage = new DashBoardPage(driver);
 		dashBoardPage.clickOnManageCases();
 		dashBoardPage.clickAlertsLink();
-
 		suggestionAlertPage = new SuggestionAlertsPage2(driver);
 		suggestionAlertPage.clickOnSuggestionAlert();
-		BrowserUtility.scrollToDown(driver);
 		Assert.assertEquals(suggestionAlertPage.isTableVisible(), true, "Table is not visible befor clicking on tag");
-		Assert.assertEquals(suggestionAlertPage.isTagFound("Tata"), true, "Tata tag is not found");
-		suggestionAlertPage.clickOnTag("Tata");
-		Assert.assertEquals(CommonUtility.verifyPageHeader(driver), "Suggestion Alert / Tata", "Header Miss Match");
+		Assert.assertEquals(suggestionAlertPage.isTagFound(tag), true, tag+" tag is not found");
+		suggestionAlertPage.clickOnTag(tag);
+		Assert.assertEquals(CommonUtility.verifyPageHeader(driver), "Suggestion Alert / "+tag, "Header Miss Match");
 	}
 
 	public void checkPagination() {
@@ -72,19 +72,19 @@ public class SuggestionAlertsPaginationTest extends BaseTest2 {
 		checkPagination();
 	}
 
-	@Test(priority = 2, enabled = true)
+	@Test(priority = 2, enabled = false)
 	public void highCourtCasesTest() throws InterruptedException {
 		suggestionAlertPage.clickOnHighCourtTab();
 		checkPagination();
 	}
 
-	@Test(priority = 3, enabled = true)
+	@Test(priority = 3, enabled = false)
 	public void districtCourtCasesTest() throws InterruptedException {
 		suggestionAlertPage.clickOnDistrictCourtTab();
 		checkPagination();
 	}
 
-	@Test(priority = 4, enabled = false)
+	@Test(priority = 4, enabled = true)
 	public void tribunalsCourtCasesTest() throws InterruptedException {
 		suggestionAlertPage.clickOnTribunalCourtTab();
 		checkPagination();

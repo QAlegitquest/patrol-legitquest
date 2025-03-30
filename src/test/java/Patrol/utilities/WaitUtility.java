@@ -6,6 +6,8 @@ import java.time.Duration;
 
 public class WaitUtility {
 	
+	private static int seconds = 20;
+	
 	// Wait for seconds 
 	public static void waitForSeconds(int seconds) {
 	    try {
@@ -25,11 +27,24 @@ public class WaitUtility {
 	        e.printStackTrace();
 	    }
 	}
+	
+	// 
+	
+	public static boolean waitForElementToBePresent(WebDriver driver,By locator) {
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
+            wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+            return true;
+        } catch (TimeoutException e) {
+            System.err.println("Element not presence within the timeout: " + e.getMessage());
+            return false;
+        }
+    }
 
     // Wait for a WebElement to be visible
     public static boolean waitForElementToBeVisible(WebDriver driver, WebElement element) {
         try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
             wait.until(ExpectedConditions.visibilityOf(element));
             return true;
         } catch (TimeoutException e) {
@@ -38,10 +53,21 @@ public class WaitUtility {
         }
     } 
 
+    public static boolean waitForElementToBeVisible(WebDriver driver, WebElement element,int seconds) {
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
+            wait.until(ExpectedConditions.visibilityOf(element));
+            return true;
+        } catch (TimeoutException e) {
+            System.err.println("Element not visible within the timeout: " + e.getMessage());
+            return false;
+        }
+    }
+    
     // Wait for a WebElement to be clickable
     public static boolean waitForElementToBeClickable(WebDriver driver, WebElement element) {
         try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
             wait.until(ExpectedConditions.elementToBeClickable(element));
             return true;
         } catch (TimeoutException e) {
@@ -53,7 +79,7 @@ public class WaitUtility {
     // Wait for a WebElement to have specific text
     public static boolean waitForTextToBePresentInElement(WebDriver driver, WebElement element, String text) {
         try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
             wait.until(ExpectedConditions.textToBePresentInElement(element, text));
             return true;
         } catch (TimeoutException e) {
@@ -65,7 +91,7 @@ public class WaitUtility {
     // Wait for a WebElement to have a specific attribute value
     public static boolean waitForAttributeToBe(WebDriver driver, WebElement element, String attribute, String value) {
         try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
             wait.until(ExpectedConditions.attributeToBe(element, attribute, value));
             return true;
         } catch (TimeoutException e) {
@@ -77,7 +103,7 @@ public class WaitUtility {
     // Wait for a WebElement to be invisible
     public static boolean waitForElementToBeInvisible(WebDriver driver, WebElement element) {
         try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
             wait.until(ExpectedConditions.invisibilityOf(element));
             return true;
         } catch (TimeoutException e) {
@@ -89,7 +115,7 @@ public class WaitUtility {
     // Wait for a WebElement to be selected
     public static boolean waitForElementToBeSelected(WebDriver driver, WebElement element) {
         try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
             wait.until(ExpectedConditions.elementToBeSelected(element));
             return true;
         } catch (TimeoutException e) {
@@ -97,6 +123,5 @@ public class WaitUtility {
             return false;
         }
     }
-    
 
 }

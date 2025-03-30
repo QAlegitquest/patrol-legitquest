@@ -25,6 +25,9 @@ public class CasesPage2 extends BasePage{
 	@FindBy(xpath="//table[contains(@class,'table')]//tbody//tr")
 	List<WebElement> table_rows;
 	
+	@FindBy(xpath="//table[contains(@class,'table')]//tbody//tr//td[2]//a[not(@class='addTag')]")
+	List<WebElement> table_rows_caseLink;
+	
 	@FindBy(css = "ul.pagination>li:last-child")
 	WebElement nextButton;
 
@@ -55,6 +58,23 @@ public class CasesPage2 extends BasePage{
 			}
 		}
 		return found;
+	}
+	
+	public boolean isCaseLinkFoundInRow(String rowcount) {
+		String xpath = ".//tbody//tr[1]";
+		xpath = xpath.replace("1",rowcount);
+		WaitUtility.waitForElementToBeVisible(driver,table);
+		WebElement row = table.findElement(By.xpath(xpath));
+		WaitUtility.waitForElementToBeVisible(driver, row);
+		WebElement caseLink = row.findElement(By.xpath(".//td[2]//a[not(@class='addTag')]"));
+		WaitUtility.waitForElementToBeVisible(driver,caseLink);
+		BrowserUtility.scrollIntoView(driver,row,true);
+		BrowserUtility.mouseToElement(driver, caseLink);
+		if(caseLink.getText().length() != 0) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 	
 	public void clickOnLink(String rowcount) {
