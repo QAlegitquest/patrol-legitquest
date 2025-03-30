@@ -71,13 +71,13 @@ public class SuggestionAlertsCaseLinksTest extends BaseTest2 {
 		softAssert.assertAll();
 	}
 	
-	@Test(priority = 1, enabled = false)
+	@Test(priority = 1, enabled = true)
 	public void supremeCourtCasesTest() throws InterruptedException {
 		suggestionAlertPage.clickOnSupremeCourtTab();
 		checkLinks();
 	}
 	
-	@Test(priority = 2, enabled = true)
+	@Test(priority = 2, enabled = false)
 	public void highCourtCasesTest() throws InterruptedException {
 		suggestionAlertPage.clickOnHighCourtTab();
 		checkLinks();

@@ -34,14 +34,14 @@ public class MyCauselistPageTest extends BaseTest2{
 		causelistPage = new MyCauselistPage(driver);
 	}
 
-	@Test(priority = 1,retryAnalyzer = RetryAnalyzer.class)
+	@Test(priority = 0,retryAnalyzer = RetryAnalyzer.class)
 	public void verifydailyTabTest() {
 		Assert.assertTrue(CommonUtility.isPageHeaderVisible(driver), "Header is not visible");
 		Assert.assertEquals(CommonUtility.verifyPageHeader(driver), "Causelist", "Header Miss Match");
 		Assert.assertEquals(causelistPage.isTabActive("Daily"), true, "Daily Tab is not active");
 	}
 
-	@Test(priority = 2,retryAnalyzer = RetryAnalyzer.class)
+	@Test(priority = 1,retryAnalyzer = RetryAnalyzer.class)
 	public void verifyweeklyTabTest() {
 		Assert.assertTrue(CommonUtility.isPageHeaderVisible(driver), "Header is not visible");
 		Assert.assertEquals(CommonUtility.verifyPageHeader(driver), "Causelist", "Header Miss Match");
@@ -49,7 +49,7 @@ public class MyCauselistPageTest extends BaseTest2{
 		Assert.assertEquals(causelistPage.isTabActive("Weekly"), true, "Weekly Tab is not active");
 	}
 
-	@Test(priority =3,retryAnalyzer = RetryAnalyzer.class)
+	@Test(priority =2,retryAnalyzer = RetryAnalyzer.class)
 	public void verifyacchivedTabTest() {
 		Assert.assertTrue(CommonUtility.isPageHeaderVisible(driver), "Header is not visible");
 		Assert.assertEquals(CommonUtility.verifyPageHeader(driver), "Causelist", "Header Miss Match");

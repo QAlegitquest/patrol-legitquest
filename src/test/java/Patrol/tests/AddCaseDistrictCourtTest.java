@@ -364,7 +364,7 @@ public class AddCaseDistrictCourtTest extends BaseTest2 {
 	}
 	
 	@Test(priority = 37,enabled = false,dataProvider = "district_court_cnr_number", dataProviderClass = DistrictCourtDP.class)
-	@Severity(SeverityLevel.NORMAL)
+	@Severity(SeverityLevel.TRIVIAL)
     @Description("Test Description: District Court Cases, Data Avilibility Check")
 	public void addCaseByCNR(String cnr) throws IOException {
 		BrowserUtility.scrollToTop(driver);

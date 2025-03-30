@@ -64,7 +64,7 @@ public class AddCaseHighCourtTest extends BaseTest2 {
 	}
 
 	@Test(priority = 4, enabled = false, dataProvider = "high_court_data_By_Advocate", dataProviderClass = HighCourtDP.class)
-	@Severity(SeverityLevel.TRIVIAL)
+	@Severity(SeverityLevel.NORMAL)
     @Description("Test Description: High Court Cases, Data Avilibility Check")
 	public void high_court_data_By_Advocate(String Court, String Advocate) throws IOException {
 		addCasePage.clickOnTab("By Advocate");

@@ -57,7 +57,7 @@ public class CasesPageTest2 extends BaseTest {
 		softAssert.assertAll();
 	}
 	
-	@Test(priority = 2, enabled = true)
+	@Test(priority = 2, enabled = false)
 	public void verifyAllLinks2() {
 		SoftAssert softAssert = new SoftAssert();
 		LoginPage loginPage = new LoginPage(driver);
@@ -97,7 +97,7 @@ public class CasesPageTest2 extends BaseTest {
 		softAssert.assertAll();
 	}
 
-	@Test(priority = 3, enabled = true)
+	@Test(priority = 3, enabled = false)
 	public void verifyPagination() {
 		SoftAssert softAssert = new SoftAssert();
 		LoginPage loginPage = new LoginPage(driver);

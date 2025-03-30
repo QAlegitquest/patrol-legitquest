@@ -30,6 +30,9 @@ public class SuggestionAlertsPage2 extends BasePage {
 
 	@FindBy(xpath = "//a[normalize-space()='Suggestion Alert']")
 	WebElement suggestionAlert;
+	
+	@FindBy(xpath = "//a[normalize-space()='Tata']")
+	WebElement tataTag;
 
 	@FindBy(xpath = "//div[normalize-space(text())='High Court']")
 	WebElement highcourtTab;
@@ -55,6 +58,10 @@ public class SuggestionAlertsPage2 extends BasePage {
 
 	public void clickOnSuggestionAlert() {
 		suggestionAlert.click();
+	}
+	
+	public void clickOnTataTag() {
+		tataTag.click();
 	}
 
 	public void clickAlertsLink() {

@@ -19,10 +19,7 @@ import io.qameta.allure.Story;
 
 public class SuggestionAlertsTest extends BaseTest{
 	
-	
-
 	@Test
-	@Epic("EP002")
 	@Feature("Alerts..")
 	@Story("Suggestion Alerts..")
 	@Description("Verifying Suggestion Alerts.....We are Veryfying whether the case number we want to check is available in the case list or not.")

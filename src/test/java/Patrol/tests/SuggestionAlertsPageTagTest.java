@@ -11,7 +11,7 @@ import Patrol.utilities.ConfingDataProvider;
 
 public class SuggestionAlertsPageTagTest extends BaseTest{
    @Test(priority = 1)
-   public void TC001() {
+   public void searchTagName() {
 	   LoginPage loginPage =new LoginPage(driver);
 		loginPage.setEmail(ConfingDataProvider.Email);
 		loginPage.setPassword(ConfingDataProvider.Password);

@@ -47,7 +47,7 @@ AddCasePage addCasePage;
 	}
 	
 	@Test(priority = 2,enabled= true,dataProvider = "tribunals_court_data_NCLAT", dataProviderClass = TribunalsCourtDP.class)
-	@Severity(SeverityLevel.MINOR)
+	@Severity(SeverityLevel.NORMAL)
     @Description("Test Description: Tribunals Court Cases Data Avilibility Check")
 	public void ByCaseNCLAT(String state,String caseType) throws IOException {
 		addCasePage.tribunalsCourtByCaseNCLAT(state ,caseType);

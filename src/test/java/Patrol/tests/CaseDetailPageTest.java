@@ -28,7 +28,7 @@ public class CaseDetailPageTest extends BaseTest2 {
 		casePage = new CasesPage(driver);
 	}
 	
-	@Test(priority = 1, enabled = true)
+	@Test(priority = 0, enabled = true)
 	public void allCasesTest() {
 		casePage.checkLinkAllPages();
 	}

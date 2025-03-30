@@ -53,7 +53,6 @@ public class SuggestionAlertsPage extends BasePage {
 	@FindBy(xpath = "//a[normalize-space()='Tata']")
 	WebElement tataTag;
 	
-
     @FindBy(xpath="//a[1]//div[1]")
     WebElement supreameCourt;
     
@@ -92,6 +91,7 @@ public class SuggestionAlertsPage extends BasePage {
 	public void clickOnTataTag() {
 		tataTag.click();
 	}
+	
 
 	public void clickAlertsLink() {
 		alertsLink.click();

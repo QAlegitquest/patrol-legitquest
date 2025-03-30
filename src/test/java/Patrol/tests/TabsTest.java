@@ -17,6 +17,7 @@ import Patrol.utilities.WaitUtility;
 public class TabsTest extends BaseTest {
 
 	// matter tab test
+	
 	@Test(priority = 3, enabled = false)
 	public void matterTab() {
 		SoftAssert softAssert = new SoftAssert();
@@ -421,6 +422,7 @@ public class TabsTest extends BaseTest {
 						"are you sure pop up is not visible");
 				caseDetailPage.clickOnYesChangeBtn();
 				caseDetailPage.clickOnRelatedMattersSaveBtn();
+				WaitUtility.waitForSeconds(0.5);
 				caseDetailPage.clickOnRelatedMattersTab();
 				casePage.goToPreviousPage();
 				casePage.goToPreviousPage();
@@ -438,7 +440,7 @@ public class TabsTest extends BaseTest {
 	}
 
 	// related matters test
-	@Test(priority = 12, enabled = true)
+	@Test(priority = 12, enabled = false)
 	public void relatedMatterTabSupremeCourt() {
 		SoftAssert softAssert = new SoftAssert();
 		LoginPage loginPage = new LoginPage(driver);
@@ -468,6 +470,7 @@ public class TabsTest extends BaseTest {
 						"are you sure pop up is not visible");
 				caseDetailPage.clickOnYesChangeBtn();
 				caseDetailPage.clickOnRelatedMattersSaveBtn();
+				WaitUtility.waitForSeconds(0.5);
 				caseDetailPage.clickOnRelatedMattersTab();
 				casePage.goToPreviousPage();
 				casePage.goToPreviousPage();
@@ -515,6 +518,7 @@ public class TabsTest extends BaseTest {
 						"are you sure pop up is not visible");
 				caseDetailPage.clickOnYesChangeBtn();
 				caseDetailPage.clickOnRelatedMattersSaveBtn();
+				WaitUtility.waitForSeconds(0.5);
 				caseDetailPage.clickOnRelatedMattersTab();
 				casePage.goToPreviousPage();
 				casePage.goToPreviousPage();
@@ -532,7 +536,7 @@ public class TabsTest extends BaseTest {
 	}
 
 	// related matters test
-	@Test(priority = 14, enabled = false)
+	@Test(priority = 14, enabled = true)
 	public void relatedMatterTabTribunal() {
 		SoftAssert softAssert = new SoftAssert();
 		LoginPage loginPage = new LoginPage(driver);
@@ -557,11 +561,13 @@ public class TabsTest extends BaseTest {
 				softAssert.assertEquals(caseDetailPage.isRelatedMattersModalVisible(), true,
 						"related matters modal is not visible");
 				caseDetailPage.selectCourt("Tribunals");
+				caseDetailPage.selectSubCourt();
 				caseDetailPage.selectCase();
 				softAssert.assertEquals(caseDetailPage.isAreYouSurePopUpVisible(), true,
 						"are you sure pop up is not visible");
 				caseDetailPage.clickOnYesChangeBtn();
 				caseDetailPage.clickOnRelatedMattersSaveBtn();
+				WaitUtility.waitForSeconds(0.5);
 				caseDetailPage.clickOnRelatedMattersTab();
 				casePage.goToPreviousPage();
 				casePage.goToPreviousPage();

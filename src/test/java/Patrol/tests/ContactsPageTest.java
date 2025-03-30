@@ -35,14 +35,14 @@ public class ContactsPageTest extends BaseTest2 {
 		contactPage = new ContactsPage(driver);
 	}
 
-	@Test(priority = 1,retryAnalyzer = RetryAnalyzer.class)
+	@Test(priority = 0,retryAnalyzer = RetryAnalyzer.class)
 	public void verifyAllTabTest() {
 		Assert.assertTrue(CommonUtility.isPageHeaderVisible(driver), "Header is not visible");
 		Assert.assertEquals(CommonUtility.verifyPageHeader(driver), "Contacts", "Header Miss Match");
 		Assert.assertEquals(contactPage.isTabActive("ALL"), true, "All Tab is not active");
 	}
 
-	@Test(priority = 2,retryAnalyzer = RetryAnalyzer.class)
+	@Test(priority = 1,retryAnalyzer = RetryAnalyzer.class)
 	public void verifyIndividualTabTest() {
 		Assert.assertTrue(CommonUtility.isPageHeaderVisible(driver), "Header is not visible");
 		Assert.assertEquals(CommonUtility.verifyPageHeader(driver), "Contacts", "Header Miss Match");
@@ -50,7 +50,7 @@ public class ContactsPageTest extends BaseTest2 {
 		Assert.assertEquals(contactPage.isTabActive("Individual"), true, "Individual Tab is not active");
 	}
 
-	@Test(priority = 3,retryAnalyzer = RetryAnalyzer.class)
+	@Test(priority = 2,retryAnalyzer = RetryAnalyzer.class)
 	public void verifyCompaniesTabTest() {
 		Assert.assertTrue(CommonUtility.isPageHeaderVisible(driver), "Header is not visible");
 		Assert.assertEquals(CommonUtility.verifyPageHeader(driver), "Contacts", "Header Miss Match");

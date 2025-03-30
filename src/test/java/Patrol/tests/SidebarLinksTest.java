@@ -167,7 +167,7 @@ public class SidebarLinksTest extends BaseTest2 {
 	}
 	
 	@Test(priority = 13,retryAnalyzer = RetryAnalyzer.class)
-	@Severity(SeverityLevel.CRITICAL)
+	@Severity(SeverityLevel.BLOCKER)
     @Description("Test Description: Patrol Smoke Test Of All Module")
 	public void manageCase_alert_linkTest() throws IOException {
 		CommonUtility.clickOnLink(driver, "Manage Cases");

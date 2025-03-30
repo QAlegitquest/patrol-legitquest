@@ -32,28 +32,28 @@ public class SuggestionAlertsCaseDetailTest extends BaseTest2 {
         suggestionAletrsPage.clickOnSuggestionAlert();
 	}
 	
-	@Test(priority = 1, enabled = false)
+	@Test(priority = 0, enabled = false)
 	public void supremeCourtCasesTest() throws InterruptedException {
 		suggestionAletrsPage.clickOnTagAllPages("Tata");
 		suggestionAletrsPage.clickOnSupreamcourt();
 		suggestionAletrsPage.checkLinkAllPages();
 	}
 	
-	@Test(priority = 2, enabled = false)
+	@Test(priority = 1, enabled = false)
 	public void highCourtCasesTest() throws InterruptedException {
 		suggestionAletrsPage.clickOnTagAllPages("Tata");
 		suggestionAletrsPage.clickOnhighcourt();
 		suggestionAletrsPage.checkLinkAllPages();
 	}
 	
-	@Test(priority = 3, enabled = false)
+	@Test(priority = 2, enabled = false)
 	public void districtCourtCasesTest() throws InterruptedException {
 		suggestionAletrsPage.clickOnTagAllPages("Tata");
 		suggestionAletrsPage.clickOnDistrictCourt();
 		suggestionAletrsPage.checkLinkAllPages();
 	}
 	
-	@Test(priority = 4, enabled = true)
+	@Test(priority = 3, enabled = true)
 	public void tribunalsCourtCasesTest() throws InterruptedException {
 		suggestionAletrsPage.clickOnTagAllPages("Tata");
 		suggestionAletrsPage.clickOnTribunalCourt();

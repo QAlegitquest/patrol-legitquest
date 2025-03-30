@@ -69,7 +69,7 @@ public class AddCaseSupreamCourtTest extends BaseTest2 {
 	}
 
 	@Test(priority = 4, enabled = false, dataProvider = "supreme_court_data_By_Advocate_Name", dataProviderClass = SupremeCourtDP.class)
-	@Severity(SeverityLevel.TRIVIAL)
+	@Severity(SeverityLevel.NORMAL)
     @Description("Test Description: Supreme Court Cases, Data Avilibility Check")
 	public void ByAdvocateName(String advocate) throws IOException {
 		addCasePage.clickOnTab("By Advocate Name");

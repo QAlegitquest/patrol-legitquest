@@ -66,25 +66,25 @@ public class SuggestionAlertsYearTest extends BaseTest2{
 		softAssert.assertAll();
 	}
 	
-	@Test(priority = 1, enabled = false)
+	@Test(priority = 0, enabled = false)
 	public void supremeCourtCasesTest() throws InterruptedException {
 		suggestionAlertPage.clickOnSupremeCourtTab();
 		checkYear();
 	}
 	
-	@Test(priority = 2, enabled = true)
+	@Test(priority = 1, enabled = true)
 	public void highCourtCasesTest() throws InterruptedException {
 		suggestionAlertPage.clickOnHighCourtTab();
 		checkYear();
 	}
 	
-	@Test(priority = 3, enabled = false)
+	@Test(priority = 2, enabled = false)
 	public void districtCourtCasesTest() throws InterruptedException {
 		suggestionAlertPage.clickOnDistrictCourtTab();
 		checkYear();
 	}
 	
-	@Test(priority = 4, enabled = false)
+	@Test(priority = 3, enabled = false)
 	public void tribunalsCourtCasesTest() throws InterruptedException {
 		suggestionAlertPage.clickOnTribunalCourtTab();
 		checkYear();

@@ -35,6 +35,7 @@ public class SuggestionAlertsPaginationTest extends BaseTest2 {
 
 		suggestionAlertPage = new SuggestionAlertsPage2(driver);
 		suggestionAlertPage.clickOnSuggestionAlert();
+		BrowserUtility.scrollToDown(driver);
 		Assert.assertEquals(suggestionAlertPage.isTableVisible(), true, "Table is not visible befor clicking on tag");
 		Assert.assertEquals(suggestionAlertPage.isTagFound("Tata"), true, "Tata tag is not found");
 		suggestionAlertPage.clickOnTag("Tata");

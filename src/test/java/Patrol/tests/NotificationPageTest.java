@@ -99,7 +99,7 @@ public class NotificationPageTest extends BaseTest2 {
 		NotificationPage notificationPage = new NotificationPage(driver);
 		Assert.assertEquals(notificationPage.isTabVisible("Misc"),true,"Misc Tab is not visible");
 		notificationPage.clickOnTab("Misc");
-		Assert.assertEquals(notificationPage.isTabActive("Misc"),true,"Misc Tab is not active");
+		Assert.assertEquals(notificationPage.isTabActive("Misc"),true,"Misc Tab not active");
 	}
 	
 	@Test(priority=7,enabled = true,retryAnalyzer = RetryAnalyzer.class)

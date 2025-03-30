@@ -53,7 +53,7 @@ public class OrderPageTest extends BaseTest{
 		activeFirmpage.clickOnLegitquest();
 		
 		CommonUtility.clickOnLink(driver,"Order Tracker");
-		Assert.assertEquals(CommonUtility.isPageHeaderVisible(driver),true,"Header is not visible");
+		Assert.assertEquals(CommonUtility.isPageHeaderVisible(driver),true,"Header not visible");
 		Assert.assertEquals(CommonUtility.verifyPageHeader(driver), "Order Tracker");
 		OrderPage orderPage = new OrderPage(driver);
 		int rowCount = orderPage.getTableRowsCount();

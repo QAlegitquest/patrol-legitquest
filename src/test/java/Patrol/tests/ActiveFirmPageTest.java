@@ -9,7 +9,7 @@ import Patrol.utilities.ConfingDataProvider;
 import Patrol.utilities.ScreenShotsUtility;
 
 public class ActiveFirmPageTest extends BaseTest{
-	@Test(priority=1 )
+	@Test(priority=0 )
 	public void verifyAlert() throws InterruptedException {
 		LoginPage loginPage = new LoginPage(driver);
 		loginPage.setEmail(ConfingDataProvider.Email);

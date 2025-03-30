@@ -35,7 +35,7 @@ public class ReportPageTest extends BaseTest2 {
    }
 	
 	
-	@Test(priority = 2,retryAnalyzer = RetryAnalyzer.class)
+	@Test(priority = 1,retryAnalyzer = RetryAnalyzer.class)
 	public void HearingStatusReport() throws IOException {
 		
 		reportpage.clickOnHearingStatusReport();
@@ -46,7 +46,7 @@ public class ReportPageTest extends BaseTest2 {
 		
 	}
 	
-	@Test(priority = 3,retryAnalyzer = RetryAnalyzer.class)
+	@Test(priority = 2,retryAnalyzer = RetryAnalyzer.class)
 	public void OrderReportTest() throws IOException {
 		reportpage.goToPreviousPage();
 		reportpage.clickOnOrderReport();
@@ -56,7 +56,7 @@ public class ReportPageTest extends BaseTest2 {
 		
 	}
 	
-	@Test(priority = 4,retryAnalyzer = RetryAnalyzer.class)
+	@Test(priority = 3,retryAnalyzer = RetryAnalyzer.class)
 	public void MatterNextDateHearing() throws IOException {
 		reportpage.goToPreviousPage();
 		reportpage.clickOnNextHearing();
@@ -66,7 +66,7 @@ public class ReportPageTest extends BaseTest2 {
 		
 	}
 	
-	@Test(priority = 5,retryAnalyzer = RetryAnalyzer.class)
+	@Test(priority = 4,retryAnalyzer = RetryAnalyzer.class)
 	public void MatterOrderReport() throws IOException {
 		reportpage.goToPreviousPage();
 		reportpage.clickOnMatterOrderReport();
@@ -76,7 +76,7 @@ public class ReportPageTest extends BaseTest2 {
 		
 	}
 	
-	@Test(priority = 6,retryAnalyzer = RetryAnalyzer.class)
+	@Test(priority = 5,retryAnalyzer = RetryAnalyzer.class)
 	public void DocumentReport() throws IOException {
 		reportpage.goToPreviousPage();
 		reportpage.clickOnDocumentReport();
@@ -86,7 +86,7 @@ public class ReportPageTest extends BaseTest2 {
 		
 	}
 	
-	@Test(priority = 7,retryAnalyzer = RetryAnalyzer.class)
+	@Test(priority = 6,retryAnalyzer = RetryAnalyzer.class)
 	public void DocumentByMatterReport() throws IOException {
 		reportpage.goToPreviousPage();
 		reportpage.clickOnDocumentByMatter();

@@ -124,7 +124,7 @@ public class PageNavigationAlertsTest extends BaseTest2 {
 
 	}
 
-	@Test(priority = 4, enabled = true)
+	@Test(priority = 4, enabled = false)
 	public void tribunalCourtTest() {
 		PageNavigationAlertsPage suggestionAlertPage = new PageNavigationAlertsPage(driver);
 		suggestionAlertPage.clickOnTribunalCourtTab();

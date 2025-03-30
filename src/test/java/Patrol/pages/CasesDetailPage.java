@@ -294,7 +294,12 @@ public class CasesDetailPage extends BasePage {
 	}
 
 	public void clickOnRelatedMattersTab() {
-		relatedMattersTab.click();
+	    try {
+	    	relatedMattersTab.click();
+	    } catch (Exception e) {
+	    	JavascriptExecutor js = (JavascriptExecutor) driver;
+		    js.executeScript("arguments[0].click();", relatedMattersTab);
+	    }
 	}
 
 	// detail methods 

@@ -32,7 +32,7 @@ public class SidebarLinksTest2 extends BaseTest {
 	public void dashboardlinkTest() throws IOException {
 		CommonUtility.clickOnLink(driver, "Dashboard");
 		DashBoardPage dashboard = new DashBoardPage(driver);
-		Assert.assertTrue(dashboard.isGraphicalViewTabVisible(), "Graphical view Tab is not visible");
+		Assert.assertTrue(dashboard.isGraphicalViewTabVisible(), "Graphical view Tab not visible");
 	}
 
 	@Test(priority = 1,retryAnalyzer = RetryAnalyzer.class)
