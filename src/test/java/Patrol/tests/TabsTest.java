@@ -41,6 +41,12 @@ public class TabsTest extends BaseTest {
 				caseDetailPage.clickOnMatterTab();
 				caseDetailPage.clickOnCreateMatterBtn();
 				softAssert.assertEquals(caseDetailPage.isMatterModalVisible(), true, "matter modal is not visible");
+				
+				caseDetailPage.selectState();
+				WaitUtility.waitForSeconds(0.5);
+				caseDetailPage.selectDistrict();
+				WaitUtility.waitForSeconds(0.5);
+				
 				caseDetailPage.clickOnMatterModalSaveChangesBtn();
 				softAssert.assertEquals(caseDetailPage.isMatterModalHide(), true, "matter modal is not hide");
 				caseDetailPage.clickOnMatterTab();
@@ -83,6 +89,7 @@ public class TabsTest extends BaseTest {
 				caseDetailPage.clickOnTaskTab();
 				caseDetailPage.clickOnCreateTaskBtn();
 				softAssert.assertEquals(caseDetailPage.isTaskModalVisible(), true, "task modal is not visible");
+				
 				caseDetailPage.enterTaskName("Task 1");
 				caseDetailPage.enterTaskDescription("Task 1 Description");
 				caseDetailPage.clickOnAssignedUser();
@@ -172,12 +179,13 @@ public class TabsTest extends BaseTest {
 				CasesDetailPage caseDetailPage = new CasesDetailPage(driver);
 				softAssert.assertEquals(caseDetailPage.isCaseDetailTabVisible(), true);
 				caseDetailPage.clickOnNotesTab();
-				caseDetailPage.clickOncreateNotesBtn();
+				caseDetailPage.clickOnCreateNoteBtn();
 				softAssert.assertEquals(caseDetailPage.isNoteModalVisible(), true, "notes modal is not visible");
+				WaitUtility.waitForSeconds(0.5);
 				caseDetailPage.enterNoteName("Note1");
 				caseDetailPage.enterNoteDate();
-				caseDetailPage.enterNoteDescription("Note Description 1");
-				caseDetailPage.clickOnNoteSaveBtn();
+				caseDetailPage.enterNotesDescription("Description1");
+				caseDetailPage.clickOnNotesSaveBtn();
 				softAssert.assertEquals(caseDetailPage.isNoteModalHide(), true, "notes modal is not hide");
 				caseDetailPage.clickOnNotesTab();
 				casePage.goToPreviousPage();
@@ -440,52 +448,54 @@ public class TabsTest extends BaseTest {
 	}
 
 	// related matters test
-	@Test(priority = 12, enabled = false)
-	public void relatedMatterTabSupremeCourt() {
-		SoftAssert softAssert = new SoftAssert();
-		LoginPage loginPage = new LoginPage(driver);
-		loginPage.setEmail(ConfingDataProvider.Email);
-		loginPage.setPassword(ConfingDataProvider.Password);
-		loginPage.performAction();
-		ActiveFirmPage activeFirmpage = new ActiveFirmPage(driver);
-		activeFirmpage.clickOnLegitquestTest();
-		DashBoardPage dashBoardPage = new DashBoardPage(driver);
-		dashBoardPage.clickOnManageCases();
-		dashBoardPage.clickCasesLink();
-		CasesPage2 casePage = new CasesPage2(driver);
-		int page = 1;
-		while (true) {
-			System.out.println("Current Page Before Loop: " + page);
-			for (int i = 0; i < casePage.getTableRowsCount(); i++) {
-				casePage.clickOnLink(String.valueOf((i + 1)));
-				CasesDetailPage caseDetailPage = new CasesDetailPage(driver);
-				softAssert.assertEquals(caseDetailPage.isCaseDetailTabVisible(), true);
-				caseDetailPage.clickOnRelatedMattersTab();
-				caseDetailPage.clickOnRelatedMattersBtn();
-				softAssert.assertEquals(caseDetailPage.isRelatedMattersModalVisible(), true,
-						"related matters modal is not visible");
-				caseDetailPage.selectCourt("Supreme Court");
-				caseDetailPage.selectCase();
-				softAssert.assertEquals(caseDetailPage.isAreYouSurePopUpVisible(), true,
-						"are you sure pop up is not visible");
-				caseDetailPage.clickOnYesChangeBtn();
-				caseDetailPage.clickOnRelatedMattersSaveBtn();
+		@Test(priority = 1, enabled = false)
+		public void realatedMatterSupremeCourt() {
+			SoftAssert softAssert = new SoftAssert();
+			LoginPage loginPage = new LoginPage(driver);
+			loginPage.setEmail(ConfingDataProvider.Email);
+			loginPage.setPassword(ConfingDataProvider.Password);
+			loginPage.performAction();
+			ActiveFirmPage activeFirmpage = new ActiveFirmPage(driver);
+			activeFirmpage.clickOnLegitquestTest();
+			DashBoardPage dashBoardPage = new DashBoardPage(driver);
+			dashBoardPage.clickOnManageCases();
+			dashBoardPage.clickCasesLink();
+			CasesPage2 casePage = new CasesPage2(driver);
+			int page = 1;
+			while (true) {
+				System.out.println("Current Page Before Loop: " + page);
+				for (int i = 0; i < casePage.getTableRowsCount(); i++) {
+					casePage.clickOnLink(String.valueOf((i + 1)));
+					CasesDetailPage caseDetailPage = new CasesDetailPage(driver);
+					softAssert.assertEquals(caseDetailPage.isCaseDetailTabVisible(), true);
+					caseDetailPage.clickOnRelatedMattersTab();
+					caseDetailPage.clickOnRelatedMattersBtn();
+					softAssert.assertEquals(caseDetailPage.isRelatedMattersModalVisible(), true,
+							"related matters modal is not visible");
+
+					caseDetailPage.selectCourt("Supreme Court");
+					WaitUtility.waitForSeconds(3);
+					caseDetailPage.selectCase();
+
+					softAssert.assertEquals(caseDetailPage.isAreYouSurePopUpVisible(), true,
+							"are you sure pop up is not visible");
+					caseDetailPage.clickOnYesChangeBtn();
+					caseDetailPage.clickOnRelatedMattersSaveBtn();
+					caseDetailPage.clickOnRelatedMattersTab();
+					casePage.goToPreviousPage();
+					casePage.goToPreviousPage();
+				}
+				BrowserUtility.scrollToDown(driver);
 				WaitUtility.waitForSeconds(0.5);
-				caseDetailPage.clickOnRelatedMattersTab();
-				casePage.goToPreviousPage();
-				casePage.goToPreviousPage();
+				if (!casePage.isNextButtonDisabled()) {
+					casePage.clickOnNextButton();
+				} else {
+					break;
+				}
+				page++;
 			}
-			BrowserUtility.scrollToDown(driver);
-			WaitUtility.waitForSeconds(0.5);
-			if (!casePage.isNextButtonDisabled()) {
-				casePage.clickOnNextButton();
-			} else {
-				break;
-			}
-			page++;
+			softAssert.assertAll();
 		}
-		softAssert.assertAll();
-	}
 
 	// related matters test
 	@Test(priority = 13, enabled = false)
@@ -513,6 +523,9 @@ public class TabsTest extends BaseTest {
 				softAssert.assertEquals(caseDetailPage.isRelatedMattersModalVisible(), true,
 						"related matters modal is not visible");
 				caseDetailPage.selectCourt("High Court");
+				WaitUtility.waitForSeconds(3);
+				caseDetailPage.selectSubCourt();
+				WaitUtility.waitForSeconds(3);
 				caseDetailPage.selectCase();
 				softAssert.assertEquals(caseDetailPage.isAreYouSurePopUpVisible(), true,
 						"are you sure pop up is not visible");
@@ -536,52 +549,55 @@ public class TabsTest extends BaseTest {
 	}
 
 	// related matters test
-	@Test(priority = 14, enabled = true)
-	public void relatedMatterTabTribunal() {
-		SoftAssert softAssert = new SoftAssert();
-		LoginPage loginPage = new LoginPage(driver);
-		loginPage.setEmail(ConfingDataProvider.Email);
-		loginPage.setPassword(ConfingDataProvider.Password);
-		loginPage.performAction();
-		ActiveFirmPage activeFirmpage = new ActiveFirmPage(driver);
-		activeFirmpage.clickOnLegitquestTest();
-		DashBoardPage dashBoardPage = new DashBoardPage(driver);
-		dashBoardPage.clickOnManageCases();
-		dashBoardPage.clickCasesLink();
-		CasesPage2 casePage = new CasesPage2(driver);
-		int page = 1;
-		while (true) {
-			System.out.println("Current Page Before Loop: " + page);
-			for (int i = 0; i < casePage.getTableRowsCount(); i++) {
-				casePage.clickOnLink(String.valueOf((i + 1)));
-				CasesDetailPage caseDetailPage = new CasesDetailPage(driver);
-				softAssert.assertEquals(caseDetailPage.isCaseDetailTabVisible(), true);
-				caseDetailPage.clickOnRelatedMattersTab();
-				caseDetailPage.clickOnRelatedMattersBtn();
-				softAssert.assertEquals(caseDetailPage.isRelatedMattersModalVisible(), true,
-						"related matters modal is not visible");
-				caseDetailPage.selectCourt("Tribunals");
-				caseDetailPage.selectSubCourt();
-				caseDetailPage.selectCase();
-				softAssert.assertEquals(caseDetailPage.isAreYouSurePopUpVisible(), true,
-						"are you sure pop up is not visible");
-				caseDetailPage.clickOnYesChangeBtn();
-				caseDetailPage.clickOnRelatedMattersSaveBtn();
+		@Test(priority = 1, enabled = false)
+		public void relatedMatterTribunal() {
+			SoftAssert softAssert = new SoftAssert();
+			LoginPage loginPage = new LoginPage(driver);
+			loginPage.setEmail(ConfingDataProvider.Email);
+			loginPage.setPassword(ConfingDataProvider.Password);
+			loginPage.performAction();
+			ActiveFirmPage activeFirmpage = new ActiveFirmPage(driver);
+			activeFirmpage.clickOnLegitquestTest();;
+			DashBoardPage dashBoardPage = new DashBoardPage(driver);
+			dashBoardPage.clickOnManageCases();
+			dashBoardPage.clickCasesLink();
+			CasesPage2 casePage = new CasesPage2(driver);
+			int page = 1;
+			while (true) {
+				System.out.println("Current Page Before Loop: " + page);
+				for (int i = 0; i < casePage.getTableRowsCount(); i++) {
+					casePage.clickOnLink(String.valueOf((i + 1)));
+					CasesDetailPage caseDetailPage = new CasesDetailPage(driver);
+					softAssert.assertEquals(caseDetailPage.isCaseDetailTabVisible(), true);
+					caseDetailPage.clickOnRelatedMattersTab();
+					caseDetailPage.clickOnRelatedMattersBtn();
+					softAssert.assertEquals(caseDetailPage.isRelatedMattersModalVisible(), true,
+							"related matters modal is not visible");
+
+					caseDetailPage.selectCourt("Tribunals");
+					WaitUtility.waitForSeconds(3);
+					caseDetailPage.selectSubCourt();
+					WaitUtility.waitForSeconds(3);
+					caseDetailPage.selectCase();
+
+					softAssert.assertEquals(caseDetailPage.isAreYouSurePopUpVisible(), true,
+							"are you sure pop up is not visible");
+					caseDetailPage.clickOnYesChangeBtn();
+					caseDetailPage.clickOnRelatedMattersSaveBtn();
+					caseDetailPage.clickOnRelatedMattersTab();
+					casePage.goToPreviousPage();
+					casePage.goToPreviousPage();
+				}
+				BrowserUtility.scrollToDown(driver);
 				WaitUtility.waitForSeconds(0.5);
-				caseDetailPage.clickOnRelatedMattersTab();
-				casePage.goToPreviousPage();
-				casePage.goToPreviousPage();
+				if (!casePage.isNextButtonDisabled()) {
+					casePage.clickOnNextButton();
+				} else {
+					break;
+				}
+				page++;
 			}
-			BrowserUtility.scrollToDown(driver);
-			WaitUtility.waitForSeconds(0.5);
-			if (!casePage.isNextButtonDisabled()) {
-				casePage.clickOnNextButton();
-			} else {
-				break;
-			}
-			page++;
+			softAssert.assertAll();
 		}
-		softAssert.assertAll();
-	}
 
 }

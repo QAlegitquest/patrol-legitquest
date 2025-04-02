@@ -116,6 +116,14 @@ public class CasesDetailPage extends BasePage {
 
 	@FindBy(xpath = "//div[@id='add-task' and contains(@class,'show')]//button[text()='Save changes']")
 	WebElement taskModalSaveChangesBtn;
+	
+	// Matter
+	
+	@FindBy(xpath="//select[@id='state']") 
+	WebElement state;
+	
+	@FindBy(xpath="//select[@id='district']")  
+	WebElement district;
 
 	// document
 	@FindBy(xpath = "//a[text()='Create Document']")
@@ -136,6 +144,7 @@ public class CasesDetailPage extends BasePage {
 	// contact
 	@FindBy(xpath = "//button[@id='contactDropdown']")
 	WebElement contactDropdown;
+	
 
 	@FindBy(xpath = "//ul[@aria-labelledby='contactDropdown']")
 	WebElement contactDropdownOptions;
@@ -145,6 +154,26 @@ public class CasesDetailPage extends BasePage {
 
 	@FindBy(xpath = "//ul[@aria-labelledby='contactDropdown']//li//a[text()='Existing Contact']")
 	WebElement createExistingOption;
+	
+	//Notes
+	
+	@FindBy(xpath="//button[normalize-space()='Create Note']")
+	WebElement createNoteBtn;
+	
+//	@FindBy(xpath="//input[@placeholder='individual name']") 
+//	WebElement Notename;
+	
+	@FindBy(xpath="(//input[@name='name'])[1]") 
+	WebElement Notename;
+	
+	@FindBy(xpath="//input[@name='note_date']") 
+    WebElement NoteDate;
+	
+	@FindBy(xpath="//div[@id='add-notes']//input[@name='description']")
+	WebElement notesDescription;
+	
+	@FindBy(xpath="//div[@id='add-notes']//button[@type='submit'][normalize-space()='Save changes']")  
+	WebElement notesModalsaveChangesBtn;
 
 	// create contact
 
@@ -311,6 +340,22 @@ public class CasesDetailPage extends BasePage {
 	public boolean isMatterModalHide() {
 		return WaitUtility.waitForElementToBeInvisible(driver, matterModal);
 	}
+	
+	public void selectState(String value) {
+		BrowserUtility.selectByVisibleText(state, value);
+	}
+	
+	public void selectState() {
+		BrowserUtility.selectRandomOption(state);
+	}
+
+	public void selectDistrict() {
+		BrowserUtility.selectRandomOption(district);
+	}
+	
+	public void selectDistrict(String value) {
+		BrowserUtility.selectByVisibleText(district, value);
+	}
 
 	public void clickOnMatterModalSaveChangesBtn() {
 		BrowserUtility.scrollIntoView(driver, matterModalSaveChangesBtn, true);
@@ -402,6 +447,49 @@ public class CasesDetailPage extends BasePage {
 		BrowserUtility.scrollIntoView(driver, documentModalSaveChangesBtn, true);
 		WaitUtility.waitForElementToBeClickable(driver, documentModalSaveChangesBtn);
 		documentModalSaveChangesBtn.click();
+	}
+	
+	//Notes method
+	
+	public void clickOnCreateNoteBtn() {
+		BrowserUtility.scrollIntoView(driver, createNoteBtn, true);
+		WaitUtility.waitForElementToBeClickable(driver, createNoteBtn);
+		createNoteBtn.click();
+	}
+
+	public boolean isNoteModalVisible() {
+		return WaitUtility.waitForElementToBeVisible(driver, notesModal);
+	}
+
+	public boolean isNoteModalHide() {
+		return WaitUtility.waitForElementToBeInvisible(driver, notesModal);
+	}
+
+	public void enterNoteName(String value) {
+		BrowserUtility.scrollIntoView(driver, Notename, true);
+		Notename.clear();
+		Notename.sendKeys(value);
+	}
+
+	public void enterNoteDate() {
+		BrowserUtility.scrollIntoView(driver, NoteDate, true);
+		NoteDate.clear();
+		LocalDate currentDate = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		String formattedDate = currentDate.format(formatter);
+		NoteDate.sendKeys(formattedDate);
+	}
+
+	public void enterNotesDescription(String value) {
+		BrowserUtility.scrollIntoView(driver, notesDescription, true);
+		notesDescription.clear();
+		notesDescription.sendKeys(value);
+	}
+
+	public void clickOnNotesSaveBtn() {
+		BrowserUtility.scrollIntoView(driver, notesModalsaveChangesBtn, true);
+		WaitUtility.waitForElementToBeClickable(driver, notesModalsaveChangesBtn);
+		notesModalsaveChangesBtn.click();
 	}
 
 	// contact method
@@ -500,7 +588,7 @@ public class CasesDetailPage extends BasePage {
 		existingContactModalSaveBtn.click();
 	}
 
-	// invoid method
+	// invoice method
 
 	public void clickOnPostInvoiceBtn() {
 		BrowserUtility.scrollIntoView(driver, postInvoiceBtn, true);
@@ -640,6 +728,10 @@ public class CasesDetailPage extends BasePage {
 	public void selectCourt(String value) {
 		BrowserUtility.selectByVisibleText(court, value);
 	}
+	
+	public void selectCourt() {
+		BrowserUtility.selectRandomOption(court);
+	}
 
 	public void selectSubCourt() {
 		BrowserUtility.selectRandomOption(subCourt);
@@ -655,8 +747,8 @@ public class CasesDetailPage extends BasePage {
 		WaitUtility.waitForElementToBeClickable(driver, searchCase);
 		searchCase.click();
 		WaitUtility.waitForElementToBeVisible(driver, searchCaseDropdown);
-		BrowserUtility.scrollIntoView(driver, searchCaseOptions.get(3), true);
-		WaitUtility.waitForElementToBeClickable(driver, searchCaseOptions.get(3));
+		BrowserUtility.scrollIntoView(driver, searchCaseOptions.get(2), true);
+		WaitUtility.waitForElementToBeClickable(driver, searchCaseOptions.get(2));
 		searchCaseOptions.get(2).click();
 	}
 

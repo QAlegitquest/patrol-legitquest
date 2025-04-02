@@ -21,8 +21,8 @@ public class SuggestionAlertsYearTest extends BaseTest2{
 	@BeforeClass()
 	public void dologin() {
 		LoginPage loginPage = new LoginPage(driver);
-		loginPage.setEmail(ConfingDataProvider.Email);
-		loginPage.setPassword(ConfingDataProvider.Password);
+		loginPage.setEmail(ConfingDataProvider.Email2);
+		loginPage.setPassword(ConfingDataProvider.Password2);
 		loginPage.performAction();
 
 		ActiveFirmPage activeFirmpage = new ActiveFirmPage(driver);

@@ -8,6 +8,9 @@ public class ConfingDataProvider {
 	public static String Email2 = ConfigReader.getConfigData("Email2");
 	public static String Password2 = ConfigReader.getConfigData("Password2");
 	
+	public static String Email5 = ConfigReader.getConfigData("Email5");
+	public static String Password5 = ConfigReader.getConfigData("Password5");
+	
 	public static String URL3= ConfigReader.getConfigData("URL3");
 	public static String Email3= ConfigReader.getConfigData("Email3");
 	public static String Password3 = ConfigReader.getConfigData("Password3");

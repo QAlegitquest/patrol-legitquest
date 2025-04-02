@@ -1144,8 +1144,8 @@ public class AddCasePage extends BasePage {
 		}
 	}
 
-	 
-	public void tribunalsCourtByCaseConsumerCourtNCDRC(String bench, String caseType,String caseTypeValue) throws IOException {
+	public void tribunalsCourtByCaseConsumerCourtNCDRC(String bench, String caseType, String caseTypeValue)
+			throws IOException {
 		File dataFile = new File("ConsumerCourt-ncdrc-invalid-data.txt");
 
 		// Check if file exists, if not, create it
@@ -1186,7 +1186,7 @@ public class AddCasePage extends BasePage {
 			} else {
 				System.out.println("Case not Found, Invalid Data");
 				// Write invalid CNR data to the file
-				writer.write(bench + " " + caseType + " " + caseTypeValue +"\n");
+				writer.write(bench + " " + caseType + " " + caseTypeValue + "\n");
 				ScreenShotsUtility.addScreenshotToReport(driver);
 				ScreenShotsUtility.takeScreenshot(driver);
 			}
@@ -1195,10 +1195,11 @@ public class AddCasePage extends BasePage {
 			System.err.println("An error occurred while writing to the file: " + e.getMessage());
 			e.printStackTrace();
 		}
-		
+
 	}
-	
-	public void tribunalsCourtByCaseConsumerCourtSCDRC(String court,String bench,String state, String caseType) throws IOException {
+
+	public void tribunalsCourtByCaseConsumerCourtSCDRC(String court, String bench, String state, String caseType)
+			throws IOException {
 		File dataFile = new File("ConsumerCourt-scdrc-invalid-data.txt");
 
 		// Check if file exists, if not, create it
@@ -1252,9 +1253,9 @@ public class AddCasePage extends BasePage {
 			e.printStackTrace();
 		}
 	}
-	
-	public void tribunalsCourtByCaseConsumerCourtDCDRC(String court,String bench, String state, String district, String caseType)
-			throws IOException {
+
+	public void tribunalsCourtByCaseConsumerCourtDCDRC(String court, String bench, String state, String district,
+			String caseType) throws IOException {
 		File dataFile = new File("ConsumerCourt-dcdrc-invalid-data.txt");
 
 		// Check if file exists, if not, create it
@@ -1311,7 +1312,7 @@ public class AddCasePage extends BasePage {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void tribunalsCourtByCaseDRT(String bench, String state, String caseType, String caseNo, String year,
 			String partyName) {
 		BrowserUtility.selectByVisibleText(getSelectElementFromTab("tab1", "Court *"), "DRT");
@@ -2228,7 +2229,7 @@ public class AddCasePage extends BasePage {
 				BrowserUtility.mouseToElement(driver, case_list_checkbox_ele);
 				BrowserUtility.click(driver, case_list_checkbox_ele);
 				BrowserUtility.click(driver, add_case_btn_ele);
-				//BrowserUtility.scrollToTop(driver);
+				// BrowserUtility.scrollToTop(driver);
 				WaitUtility.waitForElementToBeVisible(driver, popup_ele);
 				// ScreenShotsUtility.takeScreenshot(driver);
 				WaitUtility.waitForElementToBeVisible(driver, popup_ok_ele);

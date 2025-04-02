@@ -18,15 +18,16 @@ import Patrol.utilities.WaitUtility;
 
 public class CasesPageTest2 extends BaseTest {
 
-	@Test(priority = 1, enabled = true, retryAnalyzer = RetryAnalyzer.class)
+	@Test(priority = 1, enabled = false)
 	public void verifyAllLinks2() {
 		SoftAssert softAssert = new SoftAssert();
 		LoginPage loginPage = new LoginPage(driver);
-		loginPage.setEmail(ConfingDataProvider.Email);
-		loginPage.setPassword(ConfingDataProvider.Password);
+		loginPage.setEmail(ConfingDataProvider.Email2);
+		loginPage.setPassword(ConfingDataProvider.Password2);
 		loginPage.performAction();
 		ActiveFirmPage activeFirmpage = new ActiveFirmPage(driver);
 		activeFirmpage.clickOnCompany("Legitquest");
+		//activeFirmpage.clickOnCompany("Pharma Limited");
 		DashBoardPage dashBoardPage = new DashBoardPage(driver);
 		dashBoardPage.clickOnManageCases();
 		dashBoardPage.clickCasesLink();
@@ -68,7 +69,7 @@ public class CasesPageTest2 extends BaseTest {
 		softAssert.assertAll();
 	}
 
-	@Test(priority = 1, enabled = false, retryAnalyzer = RetryAnalyzer.class)
+	@Test(priority = 1, enabled = false)
 	public void verifyAllLinks() {
 		SoftAssert softAssert = new SoftAssert();
 		LoginPage loginPage = new LoginPage(driver);
@@ -108,12 +109,12 @@ public class CasesPageTest2 extends BaseTest {
 		softAssert.assertAll();
 	}
 
-	@Test(priority = 2, enabled = false, retryAnalyzer = RetryAnalyzer.class)
+	@Test(priority = 2, enabled = false)
 	public void verifyPagination() {
 		SoftAssert softAssert = new SoftAssert();
 		LoginPage loginPage = new LoginPage(driver);
-		loginPage.setEmail(ConfingDataProvider.Email);
-		loginPage.setPassword(ConfingDataProvider.Password);
+		loginPage.setEmail(ConfingDataProvider.Email2);
+		loginPage.setPassword(ConfingDataProvider.Password2);
 		loginPage.performAction();
 		ActiveFirmPage activeFirmpage = new ActiveFirmPage(driver);
 		activeFirmpage.clickOnCompany("Legitquest");
@@ -422,14 +423,14 @@ public class CasesPageTest2 extends BaseTest {
 
 	// related matters test
 	@Test(priority = 1, enabled = false)
-	public void TC009() {
+	public void relatedMatterTribunal() {
 		SoftAssert softAssert = new SoftAssert();
 		LoginPage loginPage = new LoginPage(driver);
 		loginPage.setEmail(ConfingDataProvider.Email);
 		loginPage.setPassword(ConfingDataProvider.Password);
 		loginPage.performAction();
 		ActiveFirmPage activeFirmpage = new ActiveFirmPage(driver);
-		activeFirmpage.clickOnCompany("LegitquestTest");
+		activeFirmpage.clickOnLegitquestTest();;
 		DashBoardPage dashBoardPage = new DashBoardPage(driver);
 		dashBoardPage.clickOnManageCases();
 		dashBoardPage.clickCasesLink();
@@ -448,7 +449,7 @@ public class CasesPageTest2 extends BaseTest {
 
 				caseDetailPage.selectCourt("Tribunals");
 				WaitUtility.waitForSeconds(3);
-				caseDetailPage.selectSubCourt("NCLT");
+				caseDetailPage.selectSubCourt();
 				WaitUtility.waitForSeconds(3);
 				caseDetailPage.selectCase();
 
@@ -499,35 +500,50 @@ public class CasesPageTest2 extends BaseTest {
 
 	// related matters test
 	@Test(priority = 1, enabled = false)
-	public void realatedMatterTest() {
+	public void realatedMatterSupremeCourt() {
 		SoftAssert softAssert = new SoftAssert();
 		LoginPage loginPage = new LoginPage(driver);
 		loginPage.setEmail(ConfingDataProvider.Email);
 		loginPage.setPassword(ConfingDataProvider.Password);
 		loginPage.performAction();
 		ActiveFirmPage activeFirmpage = new ActiveFirmPage(driver);
-		activeFirmpage.clickOnCompany("LegitquestTest");
+		activeFirmpage.clickOnLegitquestTest();
 		DashBoardPage dashBoardPage = new DashBoardPage(driver);
 		dashBoardPage.clickOnManageCases();
 		dashBoardPage.clickCasesLink();
 		CasesPage2 casePage = new CasesPage2(driver);
-		for (int i = 0; i < 1; i++) {
-			casePage.clickOnLink(String.valueOf((i + 1)));
-			CasesDetailPage caseDetailPage = new CasesDetailPage(driver);
-			softAssert.assertEquals(caseDetailPage.isCaseDetailTabVisible(), true);
-			caseDetailPage.clickOnRelatedMattersTab();
-			caseDetailPage.clickOnRelatedMattersBtn();
-			softAssert.assertEquals(caseDetailPage.isRelatedMattersModalVisible(), true,
-					"related matters modal is not visible");
-			caseDetailPage.selectCourt("Supreme Court"); // dp
-			WaitUtility.waitForSeconds(5);
-			caseDetailPage.selectCase(); // random
-			softAssert.assertEquals(caseDetailPage.isAreYouSurePopUpVisible(), true,
-					"are you sure pop up is not visible");
-			caseDetailPage.clickOnYesChangeBtn();
-			caseDetailPage.clickOnRelatedMattersSaveBtn();
-			caseDetailPage.clickOnRelatedMattersTab();
-			WaitUtility.waitForSeconds(20);
+		int page = 1;
+		while (true) {
+			System.out.println("Current Page Before Loop: " + page);
+			for (int i = 0; i < casePage.getTableRowsCount(); i++) {
+				casePage.clickOnLink(String.valueOf((i + 1)));
+				CasesDetailPage caseDetailPage = new CasesDetailPage(driver);
+				softAssert.assertEquals(caseDetailPage.isCaseDetailTabVisible(), true);
+				caseDetailPage.clickOnRelatedMattersTab();
+				caseDetailPage.clickOnRelatedMattersBtn();
+				softAssert.assertEquals(caseDetailPage.isRelatedMattersModalVisible(), true,
+						"related matters modal is not visible");
+
+				caseDetailPage.selectCourt("Supreme Court");
+				WaitUtility.waitForSeconds(3);
+				caseDetailPage.selectCase();
+
+				softAssert.assertEquals(caseDetailPage.isAreYouSurePopUpVisible(), true,
+						"are you sure pop up is not visible");
+				caseDetailPage.clickOnYesChangeBtn();
+				caseDetailPage.clickOnRelatedMattersSaveBtn();
+				caseDetailPage.clickOnRelatedMattersTab();
+				casePage.goToPreviousPage();
+				casePage.goToPreviousPage();
+			}
+			BrowserUtility.scrollToDown(driver);
+			WaitUtility.waitForSeconds(0.5);
+			if (!casePage.isNextButtonDisabled()) {
+				casePage.clickOnNextButton();
+			} else {
+				break;
+			}
+			page++;
 		}
 		softAssert.assertAll();
 	}
