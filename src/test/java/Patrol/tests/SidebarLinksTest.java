@@ -28,7 +28,7 @@ public class SidebarLinksTest extends BaseTest2 {
 		loginPage.setPassword(ConfingDataProvider.Password);
 		loginPage.performAction();
 		ActiveFirmPage activeFirmpage = new ActiveFirmPage(driver);
-		activeFirmpage.clickOnCompany("Legitquest");
+		activeFirmpage.clickOnLegitquest();
 	}
 	
 	@Test(priority = 0,retryAnalyzer = RetryAnalyzer.class)
