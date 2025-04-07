@@ -7,6 +7,9 @@
 	<test thread-count="5" name="Test" parallel="classes">
 		<classes>
 		    <class name="Patrol.tests.SidebarLinksTest" />
+		    <class name="Patrol.tests.MatterPageLinksTest" />
+		    <class name="Patrol.tests.ReportPageTest" />
+		    <class name="Patrol.tests.MyCauseListPageTest" />
 			
 			
 			

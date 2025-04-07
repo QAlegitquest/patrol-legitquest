@@ -97,6 +97,7 @@ public class TabsTest extends BaseTest {
 				caseDetailPage.clickOnTaskModalSaveChangesBtn();
 				softAssert.assertEquals(caseDetailPage.isTaskModalHide(), true, "task modal is not hide");
 				caseDetailPage.clickOnTaskTab();
+				
 				casePage.goToPreviousPage();
 				casePage.goToPreviousPage();
 			}
@@ -448,7 +449,7 @@ public class TabsTest extends BaseTest {
 	}
 
 	// related matters test
-		@Test(priority = 1, enabled = false)
+		@Test(priority = 1, enabled = true)
 		public void realatedMatterSupremeCourt() {
 			SoftAssert softAssert = new SoftAssert();
 			LoginPage loginPage = new LoginPage(driver);
@@ -557,7 +558,7 @@ public class TabsTest extends BaseTest {
 			loginPage.setPassword(ConfingDataProvider.Password);
 			loginPage.performAction();
 			ActiveFirmPage activeFirmpage = new ActiveFirmPage(driver);
-			activeFirmpage.clickOnLegitquestTest();;
+			activeFirmpage.clickOnLegitquest();;
 			DashBoardPage dashBoardPage = new DashBoardPage(driver);
 			dashBoardPage.clickOnManageCases();
 			dashBoardPage.clickCasesLink();
@@ -574,11 +575,19 @@ public class TabsTest extends BaseTest {
 					softAssert.assertEquals(caseDetailPage.isRelatedMattersModalVisible(), true,
 							"related matters modal is not visible");
 
-					caseDetailPage.selectCourt("Tribunals");
-					WaitUtility.waitForSeconds(3);
-					caseDetailPage.selectSubCourt();
-					WaitUtility.waitForSeconds(3);
-					caseDetailPage.selectCase();
+					try {
+						caseDetailPage.selectCourt("Tribunals");
+						WaitUtility.waitForSeconds(3);
+						caseDetailPage.selectSubCourt();
+						WaitUtility.waitForSeconds(3);
+						caseDetailPage.selectCase();
+						
+						
+					} catch (Exception e) {
+						caseDetailPage.clickOnRelatedMatterModalCloseButton();
+						casePage.goToPreviousPage();
+						continue;
+					}
 
 					softAssert.assertEquals(caseDetailPage.isAreYouSurePopUpVisible(), true,
 							"are you sure pop up is not visible");

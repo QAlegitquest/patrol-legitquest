@@ -3,6 +3,7 @@ package Patrol.pages;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Random;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -163,7 +164,7 @@ public class CasesDetailPage extends BasePage {
 //	@FindBy(xpath="//input[@placeholder='individual name']") 
 //	WebElement Notename;
 	
-	@FindBy(xpath="(//input[@name='name'])[1]") 
+	@FindBy(xpath="//div[@id='add-notes' and contains(@class,'show')]//input[@name='name']") 
 	WebElement Notename;
 	
 	@FindBy(xpath="//input[@name='note_date']") 
@@ -286,6 +287,9 @@ public class CasesDetailPage extends BasePage {
 
 	@FindBy(xpath = "//button[text()='Yes, Change!']")
 	WebElement yesChagenBtn;
+	
+	@FindBy(xpath="//div[@id='add-relatedMatters' and contains(@class,'show')]//button[@aria-label='Close']")  
+	WebElement relatedMAtterModalclosebtn;
 	// --------------
 
 	public void clickOnMatterTab() {
@@ -361,6 +365,10 @@ public class CasesDetailPage extends BasePage {
 		BrowserUtility.scrollIntoView(driver, matterModalSaveChangesBtn, true);
 		WaitUtility.waitForElementToBeClickable(driver, matterModalSaveChangesBtn);
 		matterModalSaveChangesBtn.click();
+	}
+	
+	public void clickOnRelatedMatterModalCloseButton() {
+		BrowserUtility.click(driver, relatedMAtterModalclosebtn);
 	}
 
 	// task methods
@@ -618,7 +626,7 @@ public class CasesDetailPage extends BasePage {
 	public void selectPeopleClient(String value) {
 		BrowserUtility.scrollIntoView(driver, peopleClient, true);
 		WaitUtility.waitForElementToBeClickable(driver, peopleClient);
-		peopleClient.click();
+		BrowserUtility.click(driver, peopleClient);
 
 		WaitUtility.waitForElementToBeVisible(driver, peopleClientDropdown);
 
@@ -741,17 +749,43 @@ public class CasesDetailPage extends BasePage {
 		BrowserUtility.selectByVisibleText(subCourt, value);
 	}	
 
+//	public void selectCase() {
+//		WaitUtility.waitForElementToBeVisible(driver, searchCase);
+//		BrowserUtility.scrollIntoView(driver, searchCase, true);
+//		WaitUtility.waitForElementToBeClickable(driver, searchCase);
+//		searchCase.click();
+//		WaitUtility.waitForElementToBeVisible(driver, searchCaseDropdown);
+//		BrowserUtility.scrollIntoView(driver, searchCaseOptions.get(2), true);
+//		WaitUtility.waitForElementToBeClickable(driver, searchCaseOptions.get(2));
+//		searchCaseOptions.get(2).click();
+//	}
+
 	public void selectCase() {
+		// Wait for the searchCase element to be visible and clickable
 		WaitUtility.waitForElementToBeVisible(driver, searchCase);
 		BrowserUtility.scrollIntoView(driver, searchCase, true);
 		WaitUtility.waitForElementToBeClickable(driver, searchCase);
 		searchCase.click();
-		WaitUtility.waitForElementToBeVisible(driver, searchCaseDropdown);
-		BrowserUtility.scrollIntoView(driver, searchCaseOptions.get(2), true);
-		WaitUtility.waitForElementToBeClickable(driver, searchCaseOptions.get(2));
-		searchCaseOptions.get(2).click();
-	}
 
+		// Wait for the dropdown options to be visible
+		try {
+			WaitUtility.waitForElementToBeVisible(driver, searchCaseDropdown);
+		} catch (Exception e) {
+			WaitUtility.waitForElementToBeVisible(driver, searchCaseDropdown);
+		}
+
+		// Generate a random index starting from 1 to exclude the first option
+		Random random = new Random();
+		int randomIndex = 1 + random.nextInt(searchCaseOptions.size() - 1);
+
+		// Scroll to and click the randomly selected option
+		WebElement randomOption = searchCaseOptions.get(randomIndex);
+		BrowserUtility.scrollIntoView(driver, randomOption, true);
+		WaitUtility.waitForElementToBeClickable(driver, randomOption);
+		randomOption.click();
+	}
+	
+	
 	public boolean isAreYouSurePopUpVisible() {
 		return WaitUtility.waitForElementToBeVisible(driver, areYouSurePopUp);
 	}

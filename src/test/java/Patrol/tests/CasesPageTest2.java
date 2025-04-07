@@ -18,16 +18,16 @@ import Patrol.utilities.WaitUtility;
 
 public class CasesPageTest2 extends BaseTest {
 
-	@Test(priority = 1, enabled = false)
+	@Test(priority = 1, enabled = true)
 	public void verifyAllLinks2() {
 		SoftAssert softAssert = new SoftAssert();
 		LoginPage loginPage = new LoginPage(driver);
-		loginPage.setEmail(ConfingDataProvider.Email2);
-		loginPage.setPassword(ConfingDataProvider.Password2);
+		loginPage.setEmail(ConfingDataProvider.Email5);
+		loginPage.setPassword(ConfingDataProvider.Password5);
 		loginPage.performAction();
 		ActiveFirmPage activeFirmpage = new ActiveFirmPage(driver);
-		activeFirmpage.clickOnCompany("Legitquest");
-		//activeFirmpage.clickOnCompany("Pharma Limited");
+		//activeFirmpage.clickOnLegitquest();
+		activeFirmpage.clickOnCompany("Pharma Limited");
 		DashBoardPage dashBoardPage = new DashBoardPage(driver);
 		dashBoardPage.clickOnManageCases();
 		dashBoardPage.clickCasesLink();
@@ -73,8 +73,8 @@ public class CasesPageTest2 extends BaseTest {
 	public void verifyAllLinks() {
 		SoftAssert softAssert = new SoftAssert();
 		LoginPage loginPage = new LoginPage(driver);
-		loginPage.setEmail(ConfingDataProvider.Email);
-		loginPage.setPassword(ConfingDataProvider.Password);
+		loginPage.setEmail(ConfingDataProvider.Email2);
+		loginPage.setPassword(ConfingDataProvider.Password2);
 		loginPage.performAction();
 		ActiveFirmPage activeFirmpage = new ActiveFirmPage(driver);
 		activeFirmpage.clickOnCompany("Legitquest");
@@ -388,7 +388,7 @@ public class CasesPageTest2 extends BaseTest {
 		loginPage.setPassword(ConfingDataProvider.Password);
 		loginPage.performAction();
 		ActiveFirmPage activeFirmpage = new ActiveFirmPage(driver);
-		activeFirmpage.clickOnCompany("Legitquest");
+		activeFirmpage.clickOnLegitquestTest();
 		DashBoardPage dashBoardPage = new DashBoardPage(driver);
 		dashBoardPage.clickOnManageCases();
 		dashBoardPage.clickCasesLink();
@@ -402,12 +402,12 @@ public class CasesPageTest2 extends BaseTest {
 			softAssert.assertEquals(caseDetailPage.isInvoiceModalVisible(), true, "invoice modal is not visible");
 			caseDetailPage.selectActivityCategory("Time spent onboarding new clients");
 			caseDetailPage.enterCategoryDate(CommonUtility.getCurrentDate());
-			caseDetailPage.selectPeopleClient("ajay");
+			//caseDetailPage.selectPeopleClient("ajay");
 			caseDetailPage.selectFeeType("Flat");
 			caseDetailPage.enterAmount("5000");
-			caseDetailPage.uploadContract("C:\\Users\\Rohit\\Documents\\resumes\\Rohit_CV_React_Developer.pdf");
-			caseDetailPage.uploadInvoice("C:\\Users\\Rohit\\Documents\\resumes\\Rohit_CV_React_Developer.pdf");
-			softAssert.assertEquals(caseDetailPage.isInvoiceUploaded("Rohit_CV_React_Developer.pdf"), true,
+			caseDetailPage.uploadContract("file:///D:/My_Data/Documents/BLIS_2024_25.pdf");
+			caseDetailPage.uploadInvoice("file:///D:/My_Data/Documents/krishna_12th.pdf");
+			softAssert.assertEquals(caseDetailPage.isInvoiceUploaded("file:///D:/My_Data/Documents/krishna_12th.pdf"), true,
 					"invoice is not uploaded.");
 			caseDetailPage.enterTermDate(CommonUtility.getCurrentDate());
 			caseDetailPage.enterInvoiceDate(CommonUtility.getCurrentDate());

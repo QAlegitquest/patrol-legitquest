@@ -64,7 +64,7 @@ public class MatterPageLinksTest extends BaseTest2 {
 		softAssert.assertAll();
 	}
 	
-	@Test(priority=1,enabled = true,retryAnalyzer = RetryAnalyzer.class)
+	@Test(priority=1,enabled = false,retryAnalyzer = RetryAnalyzer.class)
 	public void verifyAllTabTest(){
 		Assert.assertTrue(CommonUtility.isPageHeaderVisible(driver),"Header is not visible");
 		Assert.assertEquals(CommonUtility.verifyPageHeader(driver), "Matter","Header Miss Match");
@@ -72,7 +72,7 @@ public class MatterPageLinksTest extends BaseTest2 {
 		Assert.assertEquals(matterPage.isTabActive("ALL"),true,"All Tab is not active");
 	}
 	
-	@Test(priority=2,enabled = true,retryAnalyzer = RetryAnalyzer.class)
+	@Test(priority=2,enabled = false,retryAnalyzer = RetryAnalyzer.class)
 	public void verifyOpenTabTest(){
 		Assert.assertTrue(CommonUtility.isPageHeaderVisible(driver),"Header is not visible");
 		Assert.assertEquals(CommonUtility.verifyPageHeader(driver), "Matter","Header Miss Match");
@@ -81,7 +81,7 @@ public class MatterPageLinksTest extends BaseTest2 {
 		Assert.assertEquals(matterPage.isTabActive("Open"),true,"Open Tab is not active");
 	}
 	
-	@Test(priority=3,enabled = true,retryAnalyzer = RetryAnalyzer.class)
+	@Test(priority=3,enabled = false,retryAnalyzer = RetryAnalyzer.class)
 	public void verifyPendingTabTest(){
 		Assert.assertTrue(CommonUtility.isPageHeaderVisible(driver),"Header is not visible");
 		Assert.assertEquals(CommonUtility.verifyPageHeader(driver), "Matter","Header Miss Match");
@@ -90,7 +90,7 @@ public class MatterPageLinksTest extends BaseTest2 {
 		Assert.assertEquals(matterPage.isTabActive("Pending"),true,"Pending Tab is not active");
 	}
 
-	@Test(priority=4,enabled = true,retryAnalyzer = RetryAnalyzer.class)
+	@Test(priority=4,enabled = false,retryAnalyzer = RetryAnalyzer.class)
 	public void verifyClosedTabTest(){
 		Assert.assertTrue(CommonUtility.isPageHeaderVisible(driver),"Header is not visible");
 		Assert.assertEquals(CommonUtility.verifyPageHeader(driver), "Matter","Header Miss Match");

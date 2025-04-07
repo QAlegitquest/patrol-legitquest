@@ -4,28 +4,14 @@
   <test thread-count="25" name="Test">
     <classes>
       
-      <class name="Patrol.tests.ReportPageTest"/>
-      <class name="Patrol.tests.SmokeTestSideBar"/>
-      <class name="Patrol.tests.CaseDetailPageTest"/>
       
-      <class name="Patrol.tests.OrderPageTest"/>
-      <class name="Patrol.tests.SmokeTestSideBar2"/>
-      
-      
-      <class name="Patrol.tests.MatterPageTest"/>
       <class name="Patrol.tests.SidebarLinksTest"/>
-      <class name="Patrol.tests.CasesPageTest2"/>
       
-      
-      <class name="Patrol.tests.SuggestionAlertsYearTest"/>
-      
-      
-      <class name="Patrol.tests.ContactsPageTest"/>
       <class name="Patrol.tests.NotificationPageTest"/>
       
       
       
-      <class name="Patrol.tests.MyCauselistPageTest"/>
+      
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
