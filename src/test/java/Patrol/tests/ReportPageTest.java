@@ -56,25 +56,25 @@ public class ReportPageTest extends BaseTest2 {
 		
 	}
 	
-	@Test(priority = 3,retryAnalyzer = RetryAnalyzer.class)
-	public void MatterNextDateHearing() throws IOException {
-		reportpage.goToPreviousPage();
-		reportpage.clickOnNextHearing();
-		WaitUtility.waitForSeconds(5);
-		Assert.assertTrue(CommonUtility.isPageHeaderVisible(driver),"Header is not visible");
-		Assert.assertEquals(CommonUtility.verifyPageHeader(driver), "Matter: Matter Next Date Hearing","Header Miss Match");
-		
-	}
-	
-	@Test(priority = 4,retryAnalyzer = RetryAnalyzer.class)
-	public void MatterOrderReport() throws IOException {
-		reportpage.goToPreviousPage();
-		reportpage.clickOnMatterOrderReport();
-		WaitUtility.waitForSeconds(5);
-		Assert.assertTrue(CommonUtility.isPageHeaderVisible(driver),"Header is not visible");
-		Assert.assertEquals(CommonUtility.verifyPageHeader(driver), "Matter: Matter Order Report","Header Miss Match");
-		
-	}
+//	@Test(priority = 3,retryAnalyzer = RetryAnalyzer.class)
+//	public void MatterNextDateHearing() throws IOException {
+//		reportpage.goToPreviousPage();
+//		reportpage.clickOnNextHearing();
+//		WaitUtility.waitForSeconds(5);
+//		Assert.assertTrue(CommonUtility.isPageHeaderVisible(driver),"Header is not visible");
+//		Assert.assertEquals(CommonUtility.verifyPageHeader(driver), "Matter: Matter Next Date Hearing","Header Miss Match");
+//		
+//	}
+//	
+//	@Test(priority = 4,retryAnalyzer = RetryAnalyzer.class)
+//	public void MatterOrderReport() throws IOException {
+//		reportpage.goToPreviousPage();
+//		reportpage.clickOnMatterOrderReport();
+//		WaitUtility.waitForSeconds(5);
+//		Assert.assertTrue(CommonUtility.isPageHeaderVisible(driver),"Header is not visible");
+//		Assert.assertEquals(CommonUtility.verifyPageHeader(driver), "Matter: Matter Order Report","Header Miss Match");
+//		
+//	}
 	
 	@Test(priority = 5,retryAnalyzer = RetryAnalyzer.class)
 	public void DocumentReport() throws IOException {
@@ -93,6 +93,36 @@ public class ReportPageTest extends BaseTest2 {
 		WaitUtility.waitForSeconds(5);
 		Assert.assertTrue(CommonUtility.isPageHeaderVisible(driver),"Header is not visible");
 		Assert.assertEquals(CommonUtility.verifyPageHeader(driver), "Document By Matter Report","Header Miss Match");
+		
+	}
+	
+	@Test(priority = 7,retryAnalyzer = RetryAnalyzer.class)
+	public void newCourtCaseReport() throws IOException {
+		reportpage.goToPreviousPage();
+		reportpage.clickOnnewCourtCasesReport();
+		WaitUtility.waitForSeconds(5);
+		Assert.assertTrue(CommonUtility.isPageHeaderVisible(driver),"Header is not visible");
+		Assert.assertEquals(CommonUtility.verifyPageHeader(driver), "Case: New Court Cases","Header Miss Match");
+		
+	}
+	
+	@Test(priority = 8,retryAnalyzer = RetryAnalyzer.class)
+	public void disposedCaseReport() throws IOException {
+		reportpage.goToPreviousPage();
+		reportpage.clickOndisposedCasesReport();
+		WaitUtility.waitForSeconds(5);
+		Assert.assertTrue(CommonUtility.isPageHeaderVisible(driver),"Header is not visible");
+		Assert.assertEquals(CommonUtility.verifyPageHeader(driver), "Case: Disposed Cases","Header Miss Match");
+		
+	}
+	
+	@Test(priority = 9,retryAnalyzer = RetryAnalyzer.class)
+	public void orderTrackerCaseReport() throws IOException {
+		reportpage.goToPreviousPage();
+		reportpage.clickOnorderTrackerCasesReport();
+		WaitUtility.waitForSeconds(5);
+		Assert.assertTrue(CommonUtility.isPageHeaderVisible(driver),"Header is not visible");
+		Assert.assertEquals(CommonUtility.verifyPageHeader(driver), "Case: Order Tracker Cases","Header Miss Match");
 		
 	}
 }

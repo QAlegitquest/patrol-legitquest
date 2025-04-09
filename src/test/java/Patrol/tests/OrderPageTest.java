@@ -21,8 +21,8 @@ public class OrderPageTest extends BaseTest{
 	@Test(enabled = false)
 	public void verifyViewOrder(){
 		LoginPage loginPage = new LoginPage(driver);
-		loginPage.setEmail(ConfingDataProvider.Email);
-		loginPage.setPassword(ConfingDataProvider.Password);
+		loginPage.setEmail(ConfingDataProvider.Email2);
+		loginPage.setPassword(ConfingDataProvider.Password2);
 		loginPage.performAction();
 
 		ActiveFirmPage activeFirmpage = new ActiveFirmPage(driver);
@@ -67,8 +67,8 @@ public class OrderPageTest extends BaseTest{
 	@Test(enabled = true)
 	public void verifyViewOrder03() throws IOException, InterruptedException {
 		LoginPage loginPage = new LoginPage(driver);
-		loginPage.setEmail(ConfingDataProvider.Email);
-		loginPage.setPassword(ConfingDataProvider.Password);
+		loginPage.setEmail(ConfingDataProvider.Email2);
+		loginPage.setPassword(ConfingDataProvider.Password2);
 		loginPage.performAction();
 
 		ActiveFirmPage activeFirmpage = new ActiveFirmPage(driver);

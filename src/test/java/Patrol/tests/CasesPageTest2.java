@@ -22,12 +22,12 @@ public class CasesPageTest2 extends BaseTest {
 	public void verifyAllLinks2() {
 		SoftAssert softAssert = new SoftAssert();
 		LoginPage loginPage = new LoginPage(driver);
-		loginPage.setEmail(ConfingDataProvider.Email5);
-		loginPage.setPassword(ConfingDataProvider.Password5);
+		loginPage.setEmail(ConfingDataProvider.Email2);
+		loginPage.setPassword(ConfingDataProvider.Password2);
 		loginPage.performAction();
 		ActiveFirmPage activeFirmpage = new ActiveFirmPage(driver);
-		//activeFirmpage.clickOnLegitquest();
-		activeFirmpage.clickOnCompany("Pharma Limited");
+		activeFirmpage.clickOnLegitquest();
+		//activeFirmpage.clickOnCompany("Pharma Limited");
 		DashBoardPage dashBoardPage = new DashBoardPage(driver);
 		dashBoardPage.clickOnManageCases();
 		dashBoardPage.clickCasesLink();

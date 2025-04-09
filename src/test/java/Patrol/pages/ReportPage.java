@@ -32,6 +32,15 @@ public class ReportPage extends BasePage {
     @FindBy(xpath="//a[normalize-space()='Document By Matter']") 
     WebElement documentByMatter;
     
+    @FindBy(xpath="//a[normalize-space()='Disposed Cases Report']")  
+    WebElement disposedCasesReport;
+    
+    @FindBy(xpath="//a[normalize-space()='Order Tracker Cases Report']")  
+    WebElement orderTrackerCasesReport;
+    
+    @FindBy(xpath="//a[normalize-space()='New Court Cases Report']")  
+    WebElement newCourtCasesReport;
+    
     public void clickOnReport() {
 		reports.click();
 	}
@@ -62,6 +71,18 @@ public class ReportPage extends BasePage {
     
     public void goToPreviousPage() {
 		driver.navigate().back();
+	}
+    
+    public void clickOndisposedCasesReport() {
+    	disposedCasesReport.click();
+	}
+    
+    public void clickOnorderTrackerCasesReport() {
+    	orderTrackerCasesReport.click();
+	}
+    
+    public void clickOnnewCourtCasesReport() {
+    	newCourtCasesReport.click();
 	}
 
 }
