@@ -22,8 +22,8 @@ public class CasesPageTest2 extends BaseTest {
 	public void verifyAllLinks2() {
 		SoftAssert softAssert = new SoftAssert();
 		LoginPage loginPage = new LoginPage(driver);
-		loginPage.setEmail(ConfingDataProvider.Email2);
-		loginPage.setPassword(ConfingDataProvider.Password2);
+		loginPage.setEmail(ConfingDataProvider.Email);
+		loginPage.setPassword(ConfingDataProvider.Password);
 		loginPage.performAction();
 		ActiveFirmPage activeFirmpage = new ActiveFirmPage(driver);
 		activeFirmpage.clickOnLegitquest();

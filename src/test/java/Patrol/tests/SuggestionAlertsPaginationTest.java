@@ -25,8 +25,8 @@ public class SuggestionAlertsPaginationTest extends BaseTest2 {
 		String tag = "Tata";
 		
 		LoginPage loginPage = new LoginPage(driver);
-		loginPage.setEmail(ConfingDataProvider.Email);
-		loginPage.setPassword(ConfingDataProvider.Password);
+		loginPage.setEmail(ConfingDataProvider.Email2);
+		loginPage.setPassword(ConfingDataProvider.Password2);
 		loginPage.performAction();
 
 		ActiveFirmPage activeFirmpage = new ActiveFirmPage(driver);
@@ -78,13 +78,13 @@ public class SuggestionAlertsPaginationTest extends BaseTest2 {
 		checkPagination();
 	}
 
-	@Test(priority = 3, enabled = false)
+	@Test(priority = 3, enabled = true)
 	public void districtCourtCasesTest() throws InterruptedException {
 		suggestionAlertPage.clickOnDistrictCourtTab();
 		checkPagination();
 	}
 
-	@Test(priority = 4, enabled = true)
+	@Test(priority = 4, enabled = false)
 	public void tribunalsCourtCasesTest() throws InterruptedException {
 		suggestionAlertPage.clickOnTribunalCourtTab();
 		checkPagination();

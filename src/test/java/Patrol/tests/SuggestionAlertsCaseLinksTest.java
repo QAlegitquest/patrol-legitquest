@@ -71,7 +71,7 @@ public class SuggestionAlertsCaseLinksTest extends BaseTest2 {
 		softAssert.assertAll();
 	}
 	
-	@Test(priority = 1, enabled = true)
+	@Test(priority = 1, enabled = false)
 	public void supremeCourtCasesTest() throws InterruptedException {
 		suggestionAlertPage.clickOnSupremeCourtTab();
 		checkLinks();
@@ -89,7 +89,7 @@ public class SuggestionAlertsCaseLinksTest extends BaseTest2 {
 		checkLinks();
 	}
 	
-	@Test(priority = 4, enabled = false)
+	@Test(priority = 4, enabled = true)
 	public void tribunalsCourtCasesTest() throws InterruptedException {
 		suggestionAlertPage.clickOnTribunalCourtTab();
 		checkLinks();

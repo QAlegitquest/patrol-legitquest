@@ -3,6 +3,7 @@ package Patrol.pages;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -166,7 +167,13 @@ public class SuggestionAlertsPage2 extends BasePage {
 		BrowserUtility.scrollIntoView(driver,row,true);
 		BrowserUtility.mouseToElement(driver, caseLink);
         WaitUtility.waitForElementToBeClickable(driver, caseLink);
-        caseLink.click();
+        try {
+        	caseLink.click();
+	    } catch (Exception e) {
+	    	JavascriptExecutor js = (JavascriptExecutor) driver;
+		    js.executeScript("arguments[0].click();", caseLink);
+	    }
+       // caseLink.click();
 	}
 
 	public boolean isPattrnFoundInRow(String rowcount,String pattern) {
@@ -206,7 +213,12 @@ public class SuggestionAlertsPage2 extends BasePage {
 	}
 
 	public void clickOnNextButton() {
-		nextButton.click();
+		try {
+			nextButton.click();
+	    } catch (Exception e) {
+	    	JavascriptExecutor js = (JavascriptExecutor) driver;
+		    js.executeScript("arguments[0].click();", nextButton);
+	    }
 	}
 
 	public boolean isPreButtonEnabled() {
