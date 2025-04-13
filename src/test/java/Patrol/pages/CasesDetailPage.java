@@ -1,5 +1,10 @@
 package Patrol.pages;
 
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.Toolkit;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -8,7 +13,6 @@ import java.util.Random;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -669,14 +673,32 @@ public class CasesDetailPage extends BasePage {
 		}
 	}
 
-	public void uploadInvoice(String value) {
-		BrowserUtility.scrollIntoView(driver, invoiceFile, true);
-		invoiceFile.clear();
-//		invoiceFile.sendKeys(value);
-		// Use JavaScript to make file input visible (if hidden)
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("arguments[0].style.display = 'block';", invoiceFile);
-		invoiceFile.sendKeys(value);
+	public void uploadInvoice(String filepath) {
+		BrowserUtility.click(driver, invoiceFile);
+		try {
+			StringSelection filePathSelection = new StringSelection(filepath);
+			Toolkit.getDefaultToolkit().getSystemClipboard().setContents(filePathSelection,null);
+			
+			WaitUtility.waitForSeconds(3);
+			
+			Robot rb = new Robot();
+			
+			rb.keyPress(KeyEvent.VK_CONTROL);
+			rb.keyPress(KeyEvent.VK_V);
+			rb.keyRelease(KeyEvent.VK_CONTROL);
+			rb.keyRelease(KeyEvent.VK_V);
+			
+			WaitUtility.waitForSeconds(3);
+			
+			rb.keyPress(KeyEvent.VK_ENTER);
+			rb.keyRelease(KeyEvent.VK_ENTER);
+			
+			WaitUtility.waitForSeconds(3);
+			
+			
+		} catch (AWTException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public boolean isInvoiceUploaded(String value) {
