@@ -28,7 +28,7 @@ public class AddCaseHighCourtTest extends BaseTest2 {
 		loginPage.setPassword(ConfingDataProvider.Password);
 		loginPage.performAction();
 		ActiveFirmPage activeFirmpage = new ActiveFirmPage(driver);
-		activeFirmpage.clickOnCompany("Legitquest");
+		activeFirmpage.clickOnLegitquest();
 
 		DashBoardPage dashBoardPage = new DashBoardPage(driver);
 		dashBoardPage.clickOnManageCases();
@@ -54,7 +54,7 @@ public class AddCaseHighCourtTest extends BaseTest2 {
 		addCasePage.highCourtByCNR(cnr);
 	}
 
-	@Test(priority = 3, enabled = false, dataProvider = "high_court_data_By_Party_Name", dataProviderClass = HighCourtDP.class)
+	@Test(priority = 3, enabled = true, dataProvider = "high_court_data_By_Party_Name", dataProviderClass = HighCourtDP.class)
 	@Severity(SeverityLevel.NORMAL)
     @Description("Test Description: High Court Cases, Data Avilibility Check")
 	public void high_court_data_By_Party_Name(String Court, String CaseStatus, String year, String PartyName)

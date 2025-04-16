@@ -359,7 +359,7 @@ public class TabsTest extends BaseTest {
 	}
 
 	// invoice test
-	@Test(priority = 10, enabled = false)
+	@Test(priority = 10, enabled = true)
 	public void invoiceTab() {
 		SoftAssert softAssert = new SoftAssert();
 		LoginPage loginPage = new LoginPage(driver);
@@ -381,17 +381,17 @@ public class TabsTest extends BaseTest {
 			softAssert.assertEquals(caseDetailPage.isInvoiceModalVisible(), true, "invoice modal is not visible");
 			caseDetailPage.selectActivityCategory("Time spent onboarding new clients");
 			caseDetailPage.enterCategoryDate(CommonUtility.getCurrentDate());
-			caseDetailPage.selectPeopleClient("ajay");
+			//caseDetailPage.selectPeopleClient("ajay");
 			caseDetailPage.selectFeeType("Flat");
 			caseDetailPage.enterAmount("5000");
-			caseDetailPage.uploadContract("C:\\Users\\Rohit\\Documents\\resumes\\Rohit_CV_React_Developer.pdf");
-			caseDetailPage.uploadInvoice("C:\\Users\\Rohit\\Documents\\resumes\\Rohit_CV_React_Developer.pdf");
-			softAssert.assertEquals(caseDetailPage.isInvoiceUploaded("Rohit_CV_React_Developer.pdf"), true,
+			caseDetailPage.uploadContract("file:///D:/My_Data/Documents/BLIS_2024_25.pdf");
+			caseDetailPage.uploadInvoice("file:///D:/My_Data/Documents/BLIS_2024_25.pdf");
+			softAssert.assertEquals(caseDetailPage.isInvoiceUploaded("file:///D:/My_Data/Documents/BLIS_2024_25.pdf"), true,
 					"invoice is not uploaded.");
 			caseDetailPage.enterTermDate(CommonUtility.getCurrentDate());
 			caseDetailPage.enterInvoiceDate(CommonUtility.getCurrentDate());
 			caseDetailPage.selectDueDate("30 Days");
-			caseDetailPage.enterInvoiceDescription("this is the invoice description");
+			caseDetailPage.enterInvoiceDescription("this is the description of invoice");
 			caseDetailPage.clickOnInvoiceModalSaveBtn();
 			// --------------
 			softAssert.assertEquals(caseDetailPage.isInvoiceModalHide(), true, "invoice modal is not hide");
@@ -449,7 +449,7 @@ public class TabsTest extends BaseTest {
 	}
 
 	// related matters test
-		@Test(priority = 1, enabled = true)
+		@Test(priority = 1, enabled = false)
 		public void realatedMatterSupremeCourt() {
 			SoftAssert softAssert = new SoftAssert();
 			LoginPage loginPage = new LoginPage(driver);

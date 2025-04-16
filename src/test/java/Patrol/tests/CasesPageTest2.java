@@ -18,7 +18,7 @@ import Patrol.utilities.WaitUtility;
 
 public class CasesPageTest2 extends BaseTest {
 
-	@Test(priority = 1, enabled = false)
+	@Test(priority = 1, enabled = true)
 	public void verifyAllLinks2() {
 		SoftAssert softAssert = new SoftAssert();
 		LoginPage loginPage = new LoginPage(driver);
@@ -27,6 +27,7 @@ public class CasesPageTest2 extends BaseTest {
 		loginPage.performAction();
 		ActiveFirmPage activeFirmpage = new ActiveFirmPage(driver);
 		activeFirmpage.clickOnLegitquest();
+		//activeFirmpage.clickOnLegitquestTest();
 		//activeFirmpage.clickOnCompany("Pharma Limited");
 		DashBoardPage dashBoardPage = new DashBoardPage(driver);
 		dashBoardPage.clickOnManageCases();
@@ -109,7 +110,7 @@ public class CasesPageTest2 extends BaseTest {
 		softAssert.assertAll();
 	}
 
-	@Test(priority = 2, enabled = true)
+	@Test(priority = 2, enabled = false)
 	public void verifyPagination() {
 		SoftAssert softAssert = new SoftAssert();
 		LoginPage loginPage = new LoginPage(driver);
