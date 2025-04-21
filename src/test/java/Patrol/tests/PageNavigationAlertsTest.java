@@ -1,24 +1,26 @@
 package Patrol.tests;
 
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import Patrol.pages.ActiveFirmPage;
 import Patrol.pages.DashBoardPage;
 import Patrol.pages.LoginPage;
 import Patrol.pages.PageNavigationAlertsPage;
+import Patrol.utilities.AllureListeners;
 import Patrol.utilities.BaseTest;
-import Patrol.utilities.BaseTest2;
 import Patrol.utilities.BrowserUtility;
 import Patrol.utilities.ConfingDataProvider;
 import Patrol.utilities.WaitUtility;
-
-public class PageNavigationAlertsTest extends BaseTest2 {
+@Listeners(AllureListeners.class)
+public class PageNavigationAlertsTest extends BaseTest {
 
 	PageNavigationAlertsPage suggestionAlertPage;
 
-	@BeforeClass()
-	public void verifyPagination() {
+	
+	public void dologin() {
 		LoginPage loginPage = new LoginPage(driver);
 		loginPage.setEmail(ConfingDataProvider.Email);
 		loginPage.setPassword(ConfingDataProvider.Password);
@@ -36,6 +38,19 @@ public class PageNavigationAlertsTest extends BaseTest2 {
 
 		suggestionAlertPage.clickOnTag("Tata");
 
+	}
+	
+	@BeforeClass
+	@Override
+	public void launchBrowser() {
+		super.launchBrowser();
+		dologin();
+	}
+
+	@AfterClass
+	@Override
+	public void closeBrowser() {
+		super.closeBrowser();
 	}
 
 	@Test(priority = 1, enabled = false)

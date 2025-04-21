@@ -2,12 +2,16 @@ package Patrol.tests;
 
 
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import Patrol.pages.ActiveFirmPage;
 import Patrol.pages.DashBoardPage;
 import Patrol.pages.LoginPage;
 import Patrol.pages.SuggestionAlertsPage;
+import Patrol.utilities.AllureListeners;
 import Patrol.utilities.BaseTest;
 import Patrol.utilities.ConfingDataProvider;
 import io.qameta.allure.Description;
@@ -16,8 +20,21 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
-
+@Listeners(AllureListeners.class)
 public class SuggestionAlertsTest extends BaseTest{
+	
+	@BeforeMethod
+	@Override
+	public void launchBrowser() {
+		super.launchBrowser();
+		
+	}
+
+	@AfterMethod
+	@Override
+	public void closeBrowser() {
+		super.closeBrowser();
+	}
 	
 	@Test
 	@Feature("Alerts..")

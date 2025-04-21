@@ -1,7 +1,9 @@
 package Patrol.tests;
 
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -11,16 +13,17 @@ import Patrol.pages.CasesPage2;
 import Patrol.pages.DashBoardPage;
 import Patrol.pages.LoginPage;
 import Patrol.pages.NotificationPage;
-import Patrol.utilities.BaseTest2;
+import Patrol.utilities.AllureListeners;
+import Patrol.utilities.BaseTest;
 import Patrol.utilities.BrowserUtility;
 import Patrol.utilities.CommonUtility;
 import Patrol.utilities.ConfingDataProvider;
 import Patrol.utilities.RetryAnalyzer;
 import Patrol.utilities.WaitUtility;
+@Listeners(AllureListeners.class)
+public class NotificationPageTest extends BaseTest {
 
-public class NotificationPageTest extends BaseTest2 {
-
-	@BeforeClass()
+	
 	public void dologin() {
 		LoginPage loginPage = new LoginPage(driver);
 		loginPage.setEmail(ConfingDataProvider.Email);
@@ -28,6 +31,19 @@ public class NotificationPageTest extends BaseTest2 {
 		loginPage.performAction();
 		ActiveFirmPage activeFirmpage = new ActiveFirmPage(driver);
 		activeFirmpage.clickOnLegitquest();
+	}
+	
+	@BeforeClass
+	@Override
+	public void launchBrowser() {
+		super.launchBrowser();
+		dologin();
+	}
+
+	@AfterClass
+	@Override
+	public void closeBrowser() {
+		super.closeBrowser();
 	}
 	
 	@Test(priority=8,enabled = true,retryAnalyzer = RetryAnalyzer.class)

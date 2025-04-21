@@ -1,25 +1,28 @@
 package Patrol.tests;
 
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import Patrol.pages.ActiveFirmPage;
 import Patrol.pages.ContactsPage;
 import Patrol.pages.LoginPage;
 import Patrol.pages.MyCauselistPage;
-import Patrol.utilities.BaseTest2;
+import Patrol.utilities.AllureListeners;
+import Patrol.utilities.BaseTest;
 import Patrol.utilities.CommonUtility;
 import Patrol.utilities.ConfingDataProvider;
 import Patrol.utilities.RetryAnalyzer;
 import Patrol.utilities.WaitUtility;
-
-public class MyCauselistPageTest extends BaseTest2{
+@Listeners(AllureListeners.class)
+public class MyCauselistPageTest extends BaseTest{
 
 	
 	MyCauselistPage causelistPage;
 
-	@BeforeClass()
+	
 	public void dologin() {
 		LoginPage loginPage = new LoginPage(driver);
 		loginPage.setEmail(ConfingDataProvider.Email);
@@ -32,6 +35,19 @@ public class MyCauselistPageTest extends BaseTest2{
 		CommonUtility.clickOnLink(driver, "My Cause List");
 		WaitUtility.waitForSeconds(5);
 		causelistPage = new MyCauselistPage(driver);
+	}
+	
+	@BeforeClass
+	@Override
+	public void launchBrowser() {
+		super.launchBrowser();
+		dologin();
+	}
+
+	@AfterClass
+	@Override
+	public void closeBrowser() {
+		super.closeBrowser();
 	}
 
 	@Test(priority = 0,retryAnalyzer = RetryAnalyzer.class)

@@ -301,7 +301,7 @@ public class CasesDetailPage extends BasePage {
 	}
 
 	public void clickOnTaskTab() {
-		taskTab.click();
+		BrowserUtility.click(driver, taskTab);
 	}
 
 	public void clickOnDocumentTab() {
@@ -379,7 +379,7 @@ public class CasesDetailPage extends BasePage {
 	public void clickOnCreateTaskBtn() {
 		BrowserUtility.scrollIntoView(driver, createTaskBtn, true);
 		WaitUtility.waitForElementToBeClickable(driver, createTaskBtn);
-		createTaskBtn.click();
+		BrowserUtility.click(driver, createTaskBtn);
 	}
 
 	public boolean isTaskModalVisible() {
@@ -423,7 +423,7 @@ public class CasesDetailPage extends BasePage {
 	public void clickOnCreateDocumentBtn() {
 		BrowserUtility.scrollIntoView(driver, createDocumentBtn, true);
 		WaitUtility.waitForElementToBeClickable(driver, createDocumentBtn);
-		createDocumentBtn.click();
+		BrowserUtility.click(driver, createDocumentBtn);
 	}
 
 	public boolean isDocumentModalVisible() {
@@ -466,7 +466,7 @@ public class CasesDetailPage extends BasePage {
 	public void clickOnCreateNoteBtn() {
 		BrowserUtility.scrollIntoView(driver, createNoteBtn, true);
 		WaitUtility.waitForElementToBeClickable(driver, createNoteBtn);
-		createNoteBtn.click();
+		BrowserUtility.click(driver, createNoteBtn);
 	}
 
 	public boolean isNoteModalVisible() {

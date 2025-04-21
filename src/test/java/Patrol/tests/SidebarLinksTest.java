@@ -3,13 +3,16 @@ package Patrol.tests;
 import java.io.IOException;
 
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import Patrol.pages.ActiveFirmPage;
 import Patrol.pages.DashBoardPage;
 import Patrol.pages.LoginPage;
-import Patrol.utilities.BaseTest2;
+import Patrol.utilities.AllureListeners;
+import Patrol.utilities.BaseTest;
 import Patrol.utilities.CommonUtility;
 import Patrol.utilities.ConfingDataProvider;
 import Patrol.utilities.RetryAnalyzer;
@@ -17,10 +20,10 @@ import Patrol.utilities.WaitUtility;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
+@Listeners(AllureListeners.class)
+public class SidebarLinksTest extends BaseTest {
 
-public class SidebarLinksTest extends BaseTest2 {
-
-	@BeforeClass()
+	
 	
 	public void dologin() {
 		LoginPage loginPage = new LoginPage(driver);
@@ -29,6 +32,19 @@ public class SidebarLinksTest extends BaseTest2 {
 		loginPage.performAction();
 		ActiveFirmPage activeFirmpage = new ActiveFirmPage(driver);
 		activeFirmpage.clickOnLegitquest();
+	}
+	
+	@BeforeClass
+	@Override
+	public void launchBrowser() {
+		super.launchBrowser();
+		dologin();
+	}
+
+	@AfterClass
+	@Override
+	public void closeBrowser() {
+		super.closeBrowser();
 	}
 	
 	@Test(priority = 0,retryAnalyzer = RetryAnalyzer.class)

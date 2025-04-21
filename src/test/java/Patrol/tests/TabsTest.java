@@ -1,5 +1,6 @@
 package Patrol.tests;
 
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -8,12 +9,13 @@ import Patrol.pages.CasesDetailPage;
 import Patrol.pages.CasesPage2;
 import Patrol.pages.DashBoardPage;
 import Patrol.pages.LoginPage;
+import Patrol.utilities.AllureListeners;
 import Patrol.utilities.BaseTest;
 import Patrol.utilities.BrowserUtility;
 import Patrol.utilities.CommonUtility;
 import Patrol.utilities.ConfingDataProvider;
 import Patrol.utilities.WaitUtility;
-
+@Listeners(AllureListeners.class)
 public class TabsTest extends BaseTest {
 
 	// matter tab test
@@ -66,7 +68,7 @@ public class TabsTest extends BaseTest {
 	}
 
 	// task tab test
-	@Test(priority = 4, enabled = false)
+	@Test(priority = 4, enabled = true)
 	public void taskTab() {
 		SoftAssert softAssert = new SoftAssert();
 		LoginPage loginPage = new LoginPage(driver);
@@ -359,7 +361,7 @@ public class TabsTest extends BaseTest {
 	}
 
 	// invoice test
-	@Test(priority = 10, enabled = true)
+	@Test(priority = 10, enabled = false)
 	public void invoiceTab() {
 		SoftAssert softAssert = new SoftAssert();
 		LoginPage loginPage = new LoginPage(driver);

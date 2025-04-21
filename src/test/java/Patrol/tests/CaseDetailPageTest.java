@@ -1,20 +1,23 @@
 package Patrol.tests;
 
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import Patrol.pages.ActiveFirmPage;
 import Patrol.pages.CasesPage;
 import Patrol.pages.DashBoardPage;
 import Patrol.pages.LoginPage;
-import Patrol.utilities.BaseTest2;
+import Patrol.utilities.AllureListeners;
+import Patrol.utilities.BaseTest;
 import Patrol.utilities.ConfingDataProvider;
-
-public class CaseDetailPageTest extends BaseTest2 {
+@Listeners(AllureListeners.class)
+public class CaseDetailPageTest extends BaseTest {
 
 	CasesPage casePage;
 	
-	@BeforeClass()
+	
 	public void dologin() {
 		LoginPage loginPage = new LoginPage(driver);
 		loginPage.setEmail(ConfingDataProvider.Email);
@@ -26,6 +29,18 @@ public class CaseDetailPageTest extends BaseTest2 {
 		dashBoardPage.clickOnManageCases();
 		dashBoardPage.clickCasesLink();
 		casePage = new CasesPage(driver);
+	}
+	@BeforeClass
+	@Override
+	public void launchBrowser() {
+		super.launchBrowser();
+		dologin();
+	}
+
+	@AfterClass
+	@Override
+	public void closeBrowser() {
+		super.closeBrowser();
 	}
 	
 	@Test(priority = 0, enabled = true)

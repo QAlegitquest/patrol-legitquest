@@ -2,7 +2,9 @@ package Patrol.tests;
 
 import java.io.IOException;
 
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import Patrol.dataprovider.add_case_page.DistrictCourtDP;
@@ -11,18 +13,19 @@ import Patrol.pages.AddCasePage;
 import Patrol.pages.CasesPage;
 import Patrol.pages.DashBoardPage;
 import Patrol.pages.LoginPage;
-import Patrol.utilities.BaseTest2;
+import Patrol.utilities.AllureListeners;
+import Patrol.utilities.BaseTest;
 import Patrol.utilities.BrowserUtility;
 import Patrol.utilities.ConfingDataProvider;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
-
-public class AddCaseDistrictCourtTest extends BaseTest2 {
+@Listeners(AllureListeners.class)
+public class AddCaseDistrictCourtTest extends BaseTest {
 
 	AddCasePage addCasePage;
 
-	@BeforeClass()
+	
 	public void dologin() {
 		LoginPage loginPage = new LoginPage(driver);
 		loginPage.setEmail(ConfingDataProvider.Email);
@@ -37,6 +40,19 @@ public class AddCaseDistrictCourtTest extends BaseTest2 {
 		CasesPage casePage = new CasesPage(driver);
 		addCasePage = casePage.clickAddCaseButton();
 		addCasePage.clickOnDistrictCourt();
+	}
+	
+	@BeforeClass
+	@Override
+	public void launchBrowser() {
+		super.launchBrowser();
+		dologin();
+	}
+
+	@AfterClass
+	@Override
+	public void closeBrowser() {
+		super.closeBrowser();
 	}
 
 	@Test(priority = 1, enabled = false, dataProvider = "district_court_by_case_Andaman_and_Nicobar", dataProviderClass = DistrictCourtDP.class)

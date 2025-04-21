@@ -7,10 +7,6 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
 
 public class BaseTest {
 
@@ -61,26 +57,16 @@ public class BaseTest {
         return tdriver.get();
     }
 
-//    @BeforeClass
-//    public void launchBrowser() {
-//        initializeDriver();
-//    }
-//
-//    @AfterClass
-//    public void closeBrowser() {
-//        if (driver != null) {
-//            driver.quit();
-//        }
-//    }
-    @BeforeMethod
     public void launchBrowser() {
-        initializeDriver();
+    	if (driver == null) {
+    		initializeDriver();
+        }
     }
 
-    @AfterMethod
     public void closeBrowser() {
         if (driver != null) {
             driver.quit();
+            driver = null;
         }
     }
 }

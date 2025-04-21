@@ -1,21 +1,24 @@
 package Patrol.tests;
 
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import Patrol.pages.ActiveFirmPage;
 import Patrol.pages.LoginPage;
 import Patrol.pages.MatterPage;
-import Patrol.utilities.BaseTest2;
+import Patrol.utilities.AllureListeners;
+import Patrol.utilities.BaseTest;
 import Patrol.utilities.BrowserUtility;
 import Patrol.utilities.CommonUtility;
 import Patrol.utilities.ConfingDataProvider;
 import Patrol.utilities.RetryAnalyzer;
 import Patrol.utilities.WaitUtility;
-
-public class MatterPageLinksTest extends BaseTest2 {
+@Listeners(AllureListeners.class)
+public class MatterPageLinksTest extends BaseTest {
 
 	@BeforeClass()
 	public void dologin() {
@@ -30,6 +33,19 @@ public class MatterPageLinksTest extends BaseTest2 {
 		WaitUtility.waitForSeconds(0.5);
 		CommonUtility.clickOnLink(driver, "Matters");
 		WaitUtility.waitForSeconds(5);
+	}
+	
+	@BeforeClass
+	@Override
+	public void launchBrowser() {
+		super.launchBrowser();
+		dologin();
+	}
+
+	@AfterClass
+	@Override
+	public void closeBrowser() {
+		super.closeBrowser();
 	}
 	
 	@Test(priority=0,enabled = true)
