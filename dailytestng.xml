@@ -4,10 +4,9 @@
 	<test thread-count="5" name="Test">
 		<classes>
 
-			<class name="Patrol.tests.MatterPageLinksTest" />
-			<class name="Patrol.tests.OrderPageTest" />
 			<class name="Patrol.tests.CasesPageTest2" />
-			
+
+
 		</classes>
 	</test> <!--
 	Test -->

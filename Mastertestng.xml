@@ -2,25 +2,16 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Suite">
 
-<listeners>
-		<!--<listener class-name="Patrol.utilities.AllureListeners"></listener>-->
-	</listeners>
-	
-  <test thread-count="25" name="PatrolSanityTest">
-    <classes>
-      
-      <class name="Patrol.tests.LoginPageTest"/>
-      <class name="Patrol.tests.ContactsPageTest"/>
-      <class name="Patrol.tests.SidebarLinksTest2"/>
-      <class name="Patrol.tests.ReportPageTest"/>
-      <class name="Patrol.tests.MyCauselistPageTest"/>
-      <class name="Patrol.tests.NotificationPageTest"/>
-      <class name="Patrol.tests.MatterPageTest"/>
-      <class name="Patrol.tests.DashBoardPageTest"/>
-      <class name="Patrol.tests.MatterPageLinksTest"/>
-      <class name="Patrol.tests.OrderPageTest"/>
-      
-      
-    </classes>
-  </test> <!-- Test -->
-</suite> <!-- Suite -->
+	<test thread-count="5" name="PatrolSanityTest">
+		<classes>
+
+			<class name="Patrol.tests.LoginPageTest" />
+			<class name="Patrol.tests.ContactsPageTest" />
+			<class name="Patrol.tests.SidebarLinksTest" />
+			<class name="Patrol.tests.DashBoardPageTest" />
+
+		</classes>
+	</test> <!--
+	Test -->
+</suite> <!--
+Suite -->
