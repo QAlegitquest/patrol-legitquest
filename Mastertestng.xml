@@ -10,6 +10,8 @@
 			<class name="Patrol.tests.SidebarLinksTest" />
 			<class name="Patrol.tests.DashBoardPageTest" />
 
+
+            
 		</classes>
 	</test> <!--
 	Test -->

@@ -20,7 +20,7 @@ import Patrol.utilities.WaitUtility;
 @Listeners(AllureListeners.class)
 public class MatterPageLinksTest extends BaseTest {
 
-	@BeforeClass()
+	
 	public void dologin() {
 		LoginPage loginPage = new LoginPage(driver);
 		loginPage.setEmail(ConfingDataProvider.Email);
