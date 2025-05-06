@@ -6,10 +6,11 @@
 		<classes>
 
 			<class name="Patrol.tests.LoginPageTest" />
-			<class name="Patrol.tests.ContactsPageTest" />
+			
 			<class name="Patrol.tests.SidebarLinksTest" />
 			<class name="Patrol.tests.DashBoardPageTest" />
 
+            
 
             
 		</classes>

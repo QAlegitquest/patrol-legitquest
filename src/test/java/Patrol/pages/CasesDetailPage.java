@@ -242,7 +242,7 @@ public class CasesDetailPage extends BasePage {
 	@FindBy(xpath = "//div[@id='add-tabinvoice' and contains(@class,'show')]//input[@id='contract_file']")
 	WebElement contractFile;
 
-	@FindBy(xpath = "//div[@id='add-tabinvoice' and contains(@class,'show')]//input[@id='invoice_files']")
+	@FindBy(xpath = "//div[@id='add-tabinvoice' and contains(@class,'show')]//span[text()='Click to Upload']")
 	WebElement invoiceFile;
 
 	@FindBy(xpath = "//div[@id='add-tabinvoice' and contains(@class,'show')]//div[contains(@class,'uploaded-file')]")
@@ -297,7 +297,12 @@ public class CasesDetailPage extends BasePage {
 	// --------------
 
 	public void clickOnMatterTab() {
-		matterTab.click();
+		try {
+			matterTab.click();
+		} catch (Exception e) {
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+		    js.executeScript("arguments[0].click();", matterTab);
+		}
 	}
 
 	public void clickOnTaskTab() {
@@ -305,15 +310,20 @@ public class CasesDetailPage extends BasePage {
 	}
 
 	public void clickOnDocumentTab() {
-		documentTab.click();
+		BrowserUtility.click(driver, documentTab);
 	}
 
 	public void clickOnNotesTab() {
-		notesTab.click();
+		BrowserUtility.click(driver, notesTab);
 	}
 
 	public void clickOnContactTab() {
-		contactTab.click();
+		try {
+			contactTab.click();
+		} catch (Exception e) {
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+		    js.executeScript("arguments[0].click();", contactTab);
+		}
 	}
 
 	public void clickOnCalenderTab() {

@@ -1,5 +1,7 @@
 package Patrol.tests;
 
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -14,10 +16,25 @@ import Patrol.utilities.BaseTest;
 import Patrol.utilities.BrowserUtility;
 import Patrol.utilities.CommonUtility;
 import Patrol.utilities.ConfingDataProvider;
+import Patrol.utilities.FilePathUtil;
+import Patrol.utilities.GenerateRandomData;
 import Patrol.utilities.WaitUtility;
 @Listeners(AllureListeners.class)
 public class TabsTest extends BaseTest {
 
+	@BeforeMethod
+	@Override
+	public void launchBrowser() {
+		super.launchBrowser();
+		
+	}
+
+	@AfterMethod
+	@Override
+	public void closeBrowser() {
+		super.closeBrowser();
+	}
+	
 	// matter tab test
 	
 	@Test(priority = 3, enabled = false)
@@ -68,7 +85,7 @@ public class TabsTest extends BaseTest {
 	}
 
 	// task tab test
-	@Test(priority = 4, enabled = true)
+	@Test(priority = 4, enabled = false)
 	public void taskTab() {
 		SoftAssert softAssert = new SoftAssert();
 		LoginPage loginPage = new LoginPage(driver);
@@ -207,57 +224,59 @@ public class TabsTest extends BaseTest {
 	}
 
 	// contact test
-	@Test(priority = 7, enabled = false)
-	public void contactTabCompany() {
-		SoftAssert softAssert = new SoftAssert();
-		LoginPage loginPage = new LoginPage(driver);
-		loginPage.setEmail(ConfingDataProvider.Email);
-		loginPage.setPassword(ConfingDataProvider.Password);
-		loginPage.performAction();
-		ActiveFirmPage activeFirmpage = new ActiveFirmPage(driver);
-		activeFirmpage.clickOnLegitquestTest();
-		DashBoardPage dashBoardPage = new DashBoardPage(driver);
-		dashBoardPage.clickOnManageCases();
-		dashBoardPage.clickCasesLink();
-		CasesPage2 casePage = new CasesPage2(driver);
-		int page = 1;
-		while (true) {
-			System.out.println("Current Page Before Loop: " + page);
-			for (int i = 0; i < casePage.getTableRowsCount(); i++) {
-				casePage.clickOnLink(String.valueOf((i + 1)));
-				CasesDetailPage caseDetailPage = new CasesDetailPage(driver);
-				softAssert.assertEquals(caseDetailPage.isCaseDetailTabVisible(), true);
-				caseDetailPage.clickOnContactTab();
-				caseDetailPage.clickOnContactOptions();
-				caseDetailPage.clickOnCreateContact();
-				softAssert.assertEquals(caseDetailPage.isCreateContactModalVisible(), true,
-						"create contact modal is not visible");
-				// caseDetailPage
-				caseDetailPage.selectCategory("Company");
-				WaitUtility.waitForSeconds(1);
-				caseDetailPage.enterCompanyName("XYZ");
-				caseDetailPage.enterEmail("example@xyz.com");
-				caseDetailPage.enterPhoneNo("9897345687");
-				caseDetailPage.enterOtherInfo("Random other info");
-				caseDetailPage.enterAddres("random address");
-				caseDetailPage.clickOnCreateContactSaveBtn();
-				// --------------
-				softAssert.assertEquals(caseDetailPage.isCreateContactModalHide(), true,
-						"create contact modal is not hide");
-				caseDetailPage.clickOnContactTab();
-				casePage.goToPreviousPage();
+		@Test(priority = 7, enabled = false)
+		public void contactTabCompany() {
+			SoftAssert softAssert = new SoftAssert();
+			LoginPage loginPage = new LoginPage(driver);
+			loginPage.setEmail(ConfingDataProvider.Email);
+			loginPage.setPassword(ConfingDataProvider.Password);
+			loginPage.performAction();
+			ActiveFirmPage activeFirmpage = new ActiveFirmPage(driver);
+			activeFirmpage.clickOnLegitquestTest();
+			DashBoardPage dashBoardPage = new DashBoardPage(driver);
+			dashBoardPage.clickOnManageCases();
+			dashBoardPage.clickCasesLink();
+			CasesPage2 casePage = new CasesPage2(driver);
+			int page = 1;
+			while (true) {
+				System.out.println("Current Page Before Loop: " + page);
+				for (int i = 0; i < casePage.getTableRowsCount(); i++) {
+					casePage.clickOnLink(String.valueOf((i + 1)));
+					CasesDetailPage caseDetailPage = new CasesDetailPage(driver);
+					softAssert.assertEquals(caseDetailPage.isCaseDetailTabVisible(), true);
+					caseDetailPage.clickOnContactTab();
+					caseDetailPage.clickOnContactOptions();
+					caseDetailPage.clickOnCreateContact();
+					softAssert.assertEquals(caseDetailPage.isCreateContactModalVisible(), true,
+							"create contact modal is not visible");
+					// caseDetailPage
+					caseDetailPage.selectCategory("Company");
+					WaitUtility.waitForSeconds(1);
+					String name = GenerateRandomData.getRandomName();
+					String emailAddres = name+"@xyz.com";
+					caseDetailPage.enterCompanyName(name);
+					caseDetailPage.enterEmail(emailAddres);
+					caseDetailPage.enterPhoneNo("9897345687");
+					caseDetailPage.enterOtherInfo("other info djfhjfhd");
+					caseDetailPage.enterAddres("random address");
+					caseDetailPage.clickOnCreateContactSaveBtn();
+					// --------------
+					softAssert.assertEquals(caseDetailPage.isCreateContactModalHide(), true,
+							"create contact modal is not hide");
+					caseDetailPage.clickOnContactTab();
+					casePage.goToPreviousPage();
+				}
+				BrowserUtility.scrollToDown(driver);
+				WaitUtility.waitForSeconds(0.5);
+				if (!casePage.isNextButtonDisabled()) {
+					casePage.clickOnNextButton();
+				} else {
+					break;
+				}
+				page++;
 			}
-			BrowserUtility.scrollToDown(driver);
-			WaitUtility.waitForSeconds(0.5);
-			if (!casePage.isNextButtonDisabled()) {
-				casePage.clickOnNextButton();
-			} else {
-				break;
-			}
-			page++;
+			softAssert.assertAll();
 		}
-		softAssert.assertAll();
-	}
 
 	// contact test
 	@Test(priority = 8, enabled = false)
@@ -288,6 +307,7 @@ public class TabsTest extends BaseTest {
 				// caseDetailPage
 				caseDetailPage.selectCategory("Individual");
 				WaitUtility.waitForSeconds(1);
+				
 				caseDetailPage.enterIndividualName("Abc");
 				caseDetailPage.enterEmail("example@abc.com");
 				caseDetailPage.enterPhoneNo("9897345687");
@@ -361,46 +381,64 @@ public class TabsTest extends BaseTest {
 	}
 
 	// invoice test
-	@Test(priority = 10, enabled = false)
-	public void invoiceTab() {
-		SoftAssert softAssert = new SoftAssert();
-		LoginPage loginPage = new LoginPage(driver);
-		loginPage.setEmail(ConfingDataProvider.Email);
-		loginPage.setPassword(ConfingDataProvider.Password);
-		loginPage.performAction();
-		ActiveFirmPage activeFirmpage = new ActiveFirmPage(driver);
-		activeFirmpage.clickOnLegitquestTest();
-		DashBoardPage dashBoardPage = new DashBoardPage(driver);
-		dashBoardPage.clickOnManageCases();
-		dashBoardPage.clickCasesLink();
-		CasesPage2 casePage = new CasesPage2(driver);
-		for (int i = 0; i < 1; i++) {
-			casePage.clickOnLink(String.valueOf((i + 1)));
-			CasesDetailPage caseDetailPage = new CasesDetailPage(driver);
-			softAssert.assertEquals(caseDetailPage.isCaseDetailTabVisible(), true);
-			caseDetailPage.clickOnInvoiceTab();
-			caseDetailPage.clickOnPostInvoiceBtn();
-			softAssert.assertEquals(caseDetailPage.isInvoiceModalVisible(), true, "invoice modal is not visible");
-			caseDetailPage.selectActivityCategory("Time spent onboarding new clients");
-			caseDetailPage.enterCategoryDate(CommonUtility.getCurrentDate());
-			//caseDetailPage.selectPeopleClient("ajay");
-			caseDetailPage.selectFeeType("Flat");
-			caseDetailPage.enterAmount("5000");
-			caseDetailPage.uploadContract("file:///D:/My_Data/Documents/BLIS_2024_25.pdf");
-			caseDetailPage.uploadInvoice("file:///D:/My_Data/Documents/BLIS_2024_25.pdf");
-			softAssert.assertEquals(caseDetailPage.isInvoiceUploaded("file:///D:/My_Data/Documents/BLIS_2024_25.pdf"), true,
-					"invoice is not uploaded.");
-			caseDetailPage.enterTermDate(CommonUtility.getCurrentDate());
-			caseDetailPage.enterInvoiceDate(CommonUtility.getCurrentDate());
-			caseDetailPage.selectDueDate("30 Days");
-			caseDetailPage.enterInvoiceDescription("this is the description of invoice");
-			caseDetailPage.clickOnInvoiceModalSaveBtn();
-			// --------------
-			softAssert.assertEquals(caseDetailPage.isInvoiceModalHide(), true, "invoice modal is not hide");
-			caseDetailPage.clickOnInvoiceModalSaveBtn();
-			WaitUtility.waitForSeconds(10);
-		}
-	}
+			@Test(priority = 10, enabled = true)
+			public void invoiceTest() {
+				SoftAssert softAssert = new SoftAssert();
+				LoginPage loginPage = new LoginPage(driver);
+				loginPage.setEmail(ConfingDataProvider.Email);
+				loginPage.setPassword(ConfingDataProvider.Password);
+				loginPage.performAction();
+				ActiveFirmPage activeFirmpage = new ActiveFirmPage(driver);
+				activeFirmpage.clickOnCompany("LegitquestTest");
+				DashBoardPage dashBoardPage = new DashBoardPage(driver);
+				dashBoardPage.clickOnManageCases();
+				dashBoardPage.clickCasesLink();
+				CasesPage2 casePage = new CasesPage2(driver);
+				int page = 1;
+				while (true) {
+					System.out.println("Current Page Before Loop: " + page);
+					for (int i = 0; i < casePage.getTableRowsCount(); i++) {
+						casePage.clickOnLink(String.valueOf((i + 1)));
+						CasesDetailPage caseDetailPage = new CasesDetailPage(driver);
+						softAssert.assertEquals(caseDetailPage.isCaseDetailTabVisible(), true);
+						caseDetailPage.clickOnInvoiceTab();
+						caseDetailPage.clickOnPostInvoiceBtn();
+						softAssert.assertEquals(caseDetailPage.isInvoiceModalVisible(), true, "invoice modal is not visible");
+						caseDetailPage.selectActivityCategory("Time spent onboarding new clients");
+						caseDetailPage.enterCategoryDate(CommonUtility.getCurrentDate());
+						caseDetailPage.selectPeopleClient("Mamta");
+					    caseDetailPage.selectFeeType("Flat");
+						caseDetailPage.enterAmount("5000");
+						
+						String contractFilePath = ".\\test-data\\invoice_tab_dummy_docs\\Swapnil_UPSC Form.pdf";
+						String invoiceFilePath = ".\\test-data\\invoice_tab_dummy_docs\\Swapnil_Railway.pdf";
+						
+						caseDetailPage.uploadContract(FilePathUtil.getAbsolutePath(contractFilePath));
+						caseDetailPage.uploadInvoice(FilePathUtil.getAbsolutePath(invoiceFilePath));
+						
+						softAssert.assertEquals(caseDetailPage.isInvoiceUploaded("Swapnil_Railway.pdf"), true,"invoice is not uploaded.");
+						caseDetailPage.enterTermDate(CommonUtility.getCurrentDate());
+						caseDetailPage.enterInvoiceDate(CommonUtility.getCurrentDate());
+						caseDetailPage.selectDueDate("30 Days");
+						caseDetailPage.enterInvoiceDescription("this is the invoice description");
+						caseDetailPage.clickOnInvoiceModalSaveBtn();
+						// --------------
+						softAssert.assertEquals(caseDetailPage.isInvoiceModalHide(), true, "invoice modal is not hide");
+						caseDetailPage.clickOnInvoiceTab();
+						casePage.goToPreviousPage();
+					}
+					BrowserUtility.scrollToDown(driver);
+					WaitUtility.waitForSeconds(0.5);
+					if (!casePage.isNextButtonDisabled()) {
+						casePage.clickOnNextButton();
+					} else {
+						break;
+					}
+					page++;
+				}
+				softAssert.assertAll();
+				
+			}
 
 	// related matters test
 	@Test(priority = 11, enabled = false)
@@ -450,55 +488,55 @@ public class TabsTest extends BaseTest {
 		softAssert.assertAll();
 	}
 
-	// related matters test
-		@Test(priority = 1, enabled = false)
-		public void realatedMatterSupremeCourt() {
-			SoftAssert softAssert = new SoftAssert();
-			LoginPage loginPage = new LoginPage(driver);
-			loginPage.setEmail(ConfingDataProvider.Email);
-			loginPage.setPassword(ConfingDataProvider.Password);
-			loginPage.performAction();
-			ActiveFirmPage activeFirmpage = new ActiveFirmPage(driver);
-			activeFirmpage.clickOnLegitquestTest();
-			DashBoardPage dashBoardPage = new DashBoardPage(driver);
-			dashBoardPage.clickOnManageCases();
-			dashBoardPage.clickCasesLink();
-			CasesPage2 casePage = new CasesPage2(driver);
-			int page = 1;
-			while (true) {
-				System.out.println("Current Page Before Loop: " + page);
-				for (int i = 0; i < casePage.getTableRowsCount(); i++) {
-					casePage.clickOnLink(String.valueOf((i + 1)));
-					CasesDetailPage caseDetailPage = new CasesDetailPage(driver);
-					softAssert.assertEquals(caseDetailPage.isCaseDetailTabVisible(), true);
-					caseDetailPage.clickOnRelatedMattersTab();
-					caseDetailPage.clickOnRelatedMattersBtn();
-					softAssert.assertEquals(caseDetailPage.isRelatedMattersModalVisible(), true,
-							"related matters modal is not visible");
-
-					caseDetailPage.selectCourt("Supreme Court");
-					WaitUtility.waitForSeconds(3);
-					caseDetailPage.selectCase();
-
-					softAssert.assertEquals(caseDetailPage.isAreYouSurePopUpVisible(), true,
-							"are you sure pop up is not visible");
-					caseDetailPage.clickOnYesChangeBtn();
-					caseDetailPage.clickOnRelatedMattersSaveBtn();
-					caseDetailPage.clickOnRelatedMattersTab();
-					casePage.goToPreviousPage();
-					casePage.goToPreviousPage();
+	// related matters test Supreme Court
+			@Test(priority = 12, enabled = false)
+			public void realatedMatterSupremeCourt() {
+				SoftAssert softAssert = new SoftAssert();
+				LoginPage loginPage = new LoginPage(driver);
+				loginPage.setEmail(ConfingDataProvider.Email);
+				loginPage.setPassword(ConfingDataProvider.Password);
+				loginPage.performAction();
+				ActiveFirmPage activeFirmpage = new ActiveFirmPage(driver);
+				activeFirmpage.clickOnLegitquestTest();
+				DashBoardPage dashBoardPage = new DashBoardPage(driver);
+				dashBoardPage.clickOnManageCases();
+				dashBoardPage.clickCasesLink();
+				CasesPage2 casePage = new CasesPage2(driver);
+				
+				int page = 1;
+				while (true) {
+					System.out.println("Current Page Before Loop: " + page);
+					for (int i = 0; i < casePage.getTableRowsCount(); i++) {
+						casePage.clickOnLink(String.valueOf((i + 1)));
+						CasesDetailPage caseDetailPage = new CasesDetailPage(driver);
+						softAssert.assertEquals(caseDetailPage.isCaseDetailTabVisible(), true);
+						caseDetailPage.clickOnRelatedMattersTab();
+						caseDetailPage.clickOnRelatedMattersBtn();
+						softAssert.assertEquals(caseDetailPage.isRelatedMattersModalVisible(), true,
+								"related matters modal is not visible");
+						caseDetailPage.selectCourt("Supreme Court"); 
+						WaitUtility.waitForSeconds(2);
+						caseDetailPage.selectCase(); 
+						softAssert.assertEquals(caseDetailPage.isAreYouSurePopUpVisible(), true,
+								"are you sure pop up is not visible");
+						caseDetailPage.clickOnYesChangeBtn();
+						caseDetailPage.clickOnRelatedMattersSaveBtn();
+						caseDetailPage.clickOnRelatedMattersTab();
+						casePage.goToPreviousPage();
+						casePage.goToPreviousPage();
+					}
+					BrowserUtility.scrollToDown(driver);
+					WaitUtility.waitForSeconds(0.5);
+					if (!casePage.isNextButtonDisabled()) {
+						casePage.clickOnNextButton();
+					} else {
+						break;
+					}
+					page++;
 				}
-				BrowserUtility.scrollToDown(driver);
-				WaitUtility.waitForSeconds(0.5);
-				if (!casePage.isNextButtonDisabled()) {
-					casePage.clickOnNextButton();
-				} else {
-					break;
-				}
-				page++;
+				softAssert.assertAll();
+				
 			}
-			softAssert.assertAll();
-		}
 
 	// related matters test
 	@Test(priority = 13, enabled = false)

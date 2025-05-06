@@ -35,7 +35,7 @@ public class CasesPageTest2 extends BaseTest {
 		super.closeBrowser();
 	}
 	
-	@Test(priority = 0, enabled = true)
+	@Test(priority = 0, enabled = false)
 	public void verifyAllCasesLinks2() {
 		SoftAssert softAssert = new SoftAssert();
 		LoginPage loginPage = new LoginPage(driver);
@@ -163,7 +163,7 @@ public class CasesPageTest2 extends BaseTest {
 	}
 
 	// matter tab test
-	@Test(priority = 1, enabled = false)
+	@Test(priority = 1, enabled = true)
 	public void TC003() {
 		SoftAssert softAssert = new SoftAssert();
 		LoginPage loginPage = new LoginPage(driver);
